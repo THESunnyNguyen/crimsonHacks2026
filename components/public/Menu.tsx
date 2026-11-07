@@ -24,7 +24,7 @@ export function Menu({ menu }: { menu: MenuItem[] }) {
   return (
     <section id="menu" className="scroll-mt-6 space-y-8">
       <div className="space-y-2">
-        <h2 className="font-display text-3xl sm:text-4xl">{site.menuHeading}</h2>
+        <h2 className="font-display text-3xl text-accent sm:text-4xl">{site.menuHeading}</h2>
         <p className="text-sm text-cocoa/80">{site.menuNote}</p>
       </div>
       {categories.map((category) => {
@@ -52,7 +52,7 @@ export function Menu({ menu }: { menu: MenuItem[] }) {
                 return (
                   <li
                     key={item.id}
-                    className="flex flex-col gap-2 rounded-theme bg-cocoa/5 p-3"
+                    className="flex flex-col gap-2 rounded-theme border border-cocoa/15 bg-paper p-3"
                   >
                     <Picture
                       src={copy?.image}
