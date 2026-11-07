@@ -1,27 +1,43 @@
 import { requireStaff } from "@/lib/auth";
 import { handle, json } from "@/lib/http";
-import type { CountResult } from "@/lib/types";
+import { MAX_UPLOAD_BYTES, VisionError, countDonuts } from "@/lib/vision/count";
 
 export const dynamic = "force-dynamic";
 
-// Stub: lane A replaces this with the OpenAI vision count. Makes no AI call.
-const fakeCount: CountResult = {
-  groups: [
-    { groupId: "raised", count: 12, confidence: 0.95 },
-    { groupId: "cake", count: 3, confidence: 0.9 },
-    { groupId: "specialty", count: 5, confidence: 0.6 },
-    { groupId: "filled_bars", count: 8, confidence: 0.85 },
-  ],
-  total: 28,
-  notes: "Stub count: AI not connected yet.",
-};
-
+// Photo → CountResult. Staff only; nothing is saved (publishing is PUT /api/inventory).
 export function POST(req: Request) {
   return handle(async () => {
     requireStaff(req);
+    const length = Number(req.headers.get("content-length") || 0);
+    if (length > MAX_UPLOAD_BYTES + 64 * 1024)
+      return json({ error: "Photo is too large. Try again." }, 413);
     const image = (await req.formData().catch(() => null))?.get("image");
-    if (!(image instanceof Blob))
+    if (!(image instanceof Blob) || image.size === 0)
       return json({ error: "Missing image file" }, 400);
-    return json(fakeCount);
+    if (image.type && !image.type.startsWith("image/"))
+      return json({ error: "That file isn't a photo" }, 415);
+    if (image.size > MAX_UPLOAD_BYTES)
+      return json({ error: "Photo is too large. Try again." }, 413);
+    try {
+      const { result, timing } = await countDonuts(
+        Buffer.from(await image.arrayBuffer()),
+      );
+      console.info(
+        `Vision count: ${timing.model} ${timing.primaryMs}ms` +
+          (timing.secondModel
+            ? `, second ${timing.secondModel} ${timing.secondStatus} ${timing.secondMs ?? "-"}ms`
+            : "") +
+          `, total ${timing.totalMs}ms (${timing.width}x${timing.height})`,
+      );
+      return Response.json(result, {
+        headers: {
+          "Cache-Control": "no-store",
+          "Server-Timing": `resize;dur=${timing.resizeMs}, vision;dur=${timing.primaryMs}, total;dur=${timing.totalMs}`,
+        },
+      });
+    } catch (e) {
+      if (e instanceof VisionError) return json({ error: e.message }, e.status);
+      throw e;
+    }
   });
 }
