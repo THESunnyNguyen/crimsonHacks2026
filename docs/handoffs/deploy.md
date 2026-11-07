@@ -1,21 +1,18 @@
 # Deployment handoff — November 6, 2026
 
-## Superseding status — 21:59 MST
-Production is LIVE after Sunny explicitly approved in the separate deployment
-chat: "terms accepted, deploy production."
-Main was separately approved, merged/pushed as4be30e0, then explicitly deployed.
-Current production is rkhjh6itz / dpl_Hoc1HV9ZoxbKfXVR9qbCX5zNeUDS, READY.
-VISION_MODEL is now gpt-6.1-terra: Astra hit25sec/504 in production; Terra passed
-real photo in9.741sec. Live notes passed1.763sec. No source/contract change.
-Parent production evidence: .artifacts/production/result.json. Actual phone
-still pending; phone-width Chromium passed. The paragraphs below document history. Account-owned Free Upstash newDB in
-US-WEST-1 supersedes the temporary scratch database described below.
-Live: https://fresh-donuts-deli-crimson2026.vercel.app
-Deployment source bd13056; application code equals current integration. The other
-agent reported Redis persistence, staff auth, inventory/order updates and live
-AI parsing passed. Parent independently confirmed public HTTP200 and staff401.
-Main merge now separately approved in this chat. Earlier blocked notes below
-are historical. Actual-phone acceptance and post-freeze backup still pending.
+## Current status — 22:23 MST
+Production is LIVE: https://fresh-donuts-deli-crimson2026.vercel.app
+
+- Sunny approved production in the separate deployment chat ("terms accepted, deploy production") and main in this chat ("yes merge main, approved"). Both actions are completed.
+- Main now points to `230aab2`, including the separately authorized and cross-reviewed recolor, shop photos, and story copy. Application source deployed is `b15c1b0`; the following commit adds only its handoff.
+- Current production deployment is `dpl_6pqgmiUQecX19DfpTdrE6Mc3ptg8`, READY, as verified in `photos.md`; coordinator is aligning the local copy and independently checking the canonical alias.
+- Account-owned Free Upstash newDB in US-WEST-1 is configured. It supersedes the historical scratch DB below.
+- Vision uses `gpt-6.1-terra`, notes use `gpt-6-luna`. Before the styling-only deployment, real photo passed in9.741sec and typed demo notes in1.763sec; evidence `.artifacts/production/result.json`. No accuracy or reliable8sec claim.
+- Recolor owner verified hosted routes, PIN protection, and 390px browser layout; coordinator reran verify plus all3 fixture demo flows on both integrated recolor and photo changes. See `docs/handoffs/recolor.md` and `orchestrator.md` for exact evidence.
+- Actual physical-phone acceptance is still unconfirmed. Final offline recording starts after22:30 and is owned by the coordinator.
+- Vercel has no Git link; source pushes do not automatically deploy. Future application changes need deliberate deployment. Current integration additions after the deployed styling are documentation only.
+
+Everything below is historical setup evidence, not a current approval blocker.
 
 Last checked: **21:44 MST**. Integration source: `0f233aed25cc5e5d53cbf63cad4f1f40bb3b52bb`.
 

@@ -1,15 +1,15 @@
 # Orchestrator handoff — Crimson Hacks 2026
 
-Refreshed: 2026-11-06T22:13:48-07:00. Run `date` at every check-in.
+Refreshed: 2026-11-06T22:18:49-07:00. Run `date` at every check-in.
 
 ## Current state
 - Working directory: `/Users/sunnynguyen/.paradev/worktrees/crimsonHacks2026/orchestrator-crimson-hacks-173615f7`, branch `integration`.
 - Original chat cwd b578253d is a stale isolated pitch worktree; do NOT use it as the app source.
 - Node 22: prepend `/Users/sunnynguyen/.nvm/versions/node/v22.23.4/bin` to PATH.
-- **Main merged and pushed: `4be30e0`**, with explicit Sunny approval: "yes merge main, approved" (21:52). Separate user-authorized recolor subsequently advanced origin/main to `132f692`; local main is now fast-forwarded to match, preserving the dirty contract note byte-for-byte.
+- **Main merged and pushed: `4be30e0`**, with explicit Sunny approval: "yes merge main, approved" (21:52). Separate user-authorized recolor subsequently advanced origin/main to `132f692`, then user-supplied shop photos/story copy to `230aab2`; local main is now fast-forwarded to match, preserving the dirty contract note byte-for-byte.
 - **Production verified:** https://fresh-donuts-deli-crimson2026.vercel.app
-- Current deployment: `dpl_5jRjHhSRC2rLuEMB8hgyQDLmzXpo`, immutable URL `https://fresh-donuts-deli-crimson2026-lvvuhg332.vercel.app`, READY/production; canonical alias independently inspected at22:14. Deployed application SHA `285f5b2`; main `132f692` adds only its handoff. Previous live-AI verified deployment was `dpl_Hoc1HV9ZoxbKfXVR9qbCX5zNeUDS` (`rkhjh6itz`).
-- Previous uploaded source was `git archive 4be30e0`; current recolor was independently cross-reviewed and deployed from tracked-source archive `285f5b2` by its owning chat. See `docs/handoffs/recolor.md`.
+- Current deployment reported and reviewed in the photos handoff: `dpl_6pqgmiUQecX19DfpTdrE6Mc3ptg8`, READY/production. Deployed application SHA `b15c1b0`; origin/main `230aab2` adds only its handoff. Previous recolor deployment was `dpl_5jRjHhSRC2rLuEMB8hgyQDLmzXpo` (`lvvuhg332`), independently inspected at22:14. Previous live-AI verified deployment was `dpl_Hoc1HV9ZoxbKfXVR9qbCX5zNeUDS` (`rkhjh6itz`).
+- Previous uploaded source was `git archive 4be30e0`; recolor was independently cross-reviewed and deployed from tracked-source archive `285f5b2`, followed by user-supplied photos/copy from `b15c1b0` by the same owning chat. See `docs/handoffs/recolor.md` and `photos.md`.
 - Production/Preview vision model: `gpt-6.1-terra`. Parse model remains `gpt-6-luna`. No source or contract changes for this configuration correction.
 - Vercel project has **no Git auto-deploy link**. Main push was followed by explicit deployment from a clean archive. Do not assume a new push deploys automatically.
 - Account-owned Free Upstash **newDB**, US-WEST-1, was connected by the separate deployment chat. All required Production env names checked.
@@ -19,7 +19,7 @@ Refreshed: 2026-11-06T22:13:48-07:00. Run `date` at every check-in.
 ## Remaining work and clock
 - **Continue this active orchestration task; do not end the turn merely because decisions are pending.** Sunny objected when the coordinator stopped earlier.
 - 22:00 integration milestone: MET early; verify and fixture demo checks pass on integration and main.
-- 22:20 live-AI + phone milestone: live production AI and hosted app verified; **actual Sunny phone flow still awaiting reply** to async question.
+- 22:20 live-AI + phone milestone: live production AI and hosted app verified; **actual Sunny phone flow still awaiting reply (22:20 visual approval is not full phone acceptance)** to async question.
 - 22:30 FEATURE FREEZE: only demo blockers/copy/polish after; record final backup AFTER this time.
 - 23:00 rehearsal + playable offline backup due. Orchestrator owns recording; script/slides belong to the separate pitch agent.
 - 23:20 main/production gate already met early with approval; recheck final state if anything changes.
@@ -36,6 +36,7 @@ Refreshed: 2026-11-06T22:13:48-07:00. Run `date` at every check-in.
 - Recommended count deduction is NOT approved/implemented. Main approval was not permission to silently rewrite the contract. This does not affect the scripted tomorrow order's today stock.
 
 ## Verification evidence
+- Photo/story integration recheck PASS: `.artifacts/verify/1794028896595-95a08c/result.json` and all3 fixture demo flows `.artifacts/demo/run-Bsfs9I/`. Changes stay within the six photo-owned files. Photos handoff records independent Claude MERGE atb15c1b0 and production layout/asset checks.
 - Recolor integration recheck PASS: `.artifacts/verify/1794028345262-a7b76d/result.json` and all3 fixture demo flows `.artifacts/demo/run-iNNms6/`. Read-only diff matches the recolor owner’s7 files. Cross-review evidence in that worktree `.artifacts/recolor/claude-review.json` reports MERGE at285f5b2.
 - Independent Codex MERGE verdicts: B `2b10be9` (inherits F `2caa94a` ONCE), C `83904e9`, A `c9fc35c` and `d3c787a`; A handoff correction `258b372` also integrated.
 - Workflow `692a5a6` was integrated first. Existing merge helper refuses non-main branches, so integration used pending merge → verify → commit procedure without tooling edits. Actual main merge used the helper normally.
@@ -48,8 +49,8 @@ Refreshed: 2026-11-06T22:13:48-07:00. Run `date` at every check-in.
 - Real Commons photo has uncertain group labels/cruller; synthetic drawings are pipeline fixtures, never model accuracy evidence. See docs/eval.md.
 
 ## Local runtime and final recording
-- Local production-mode app on **3110**, restarting after verified recolor build, with `VISION_MODEL=gpt-6.1-terra VISION_SECOND_MODEL=`. Uses JSON; never place Redis in local .env.
-- Node22, rebuilt `.next` production build matches application code of main132f692/deployed285f5b2. Dev mode previously blocked127.0.0.1 HMR; no config edit was made. Use http://localhost:3110.
+- Local production-mode app on **3110**, restarting after verified photo build, with `VISION_MODEL=gpt-6.1-terra VISION_SECOND_MODEL=`. Uses JSON; never place Redis in local .env.
+- Node22, rebuilt `.next` production build matches application code of origin/main230aab2/deployedb15c1b0. Dev mode previously blocked127.0.0.1 HMR; no config edit was made. Use http://localhost:3110.
 - Local demo was reset:20/group, one sample,78 available. Seed again immediately before recording, local only.
 - Provisional fixture video: `.artifacts/pitch/golden-path-fixture.mp4` and `.webm`; 80.92sec/3,209,010bytes. All8 golden steps + offline playback passed. Permanent fixture-AI label. It is NOT the final post-freeze recording.
 - Final LIVE recording variant prepared (syntax checked, not run before freeze): `.artifacts/pitch/record-live.mjs`. It calls actual local AI routes (no AI interception), uses staged synthetic images with known counts, corrects counts explicitly, and labels LIVE OPENAI/STAGED IMAGES/HUMAN CONFIRMATION. It is not an accuracy benchmark.
@@ -63,6 +64,6 @@ Refreshed: 2026-11-06T22:13:48-07:00. Run `date` at every check-in.
 - A Claude stopped at21:16 (hard stop21:45 met), final258b372. Original lane retains generated dirty AGENTS.md and browser artifacts, untouched.
 - Review native worker completed; old deploy native worker hit TPM limits and was replaced; replacement finished blocked before the separate user-led deployment chat succeeded. No need to resume them.
 - User stopped our duplicate Pitch worker. Our pitch-doc cherry-pick b0ec956 was reverted ascb17966. Do not reintroduce it.
-- Separate pitch branch `pitch-demo-docs-e9465335`, commit `e9b98d3`, owns scripts/slides. Read-only review found demo-script lines47/53/54 permit skipping golden-path steps; noted for owner, NOT edited or integrated. No terminal to message. Preserve all steps using fallback/video.
+- Separate pitch chat was reached via existing session a4f9b1ea-6754-4379-ae43-1778b8f87070 (workspace e9465335-3e3e-4085-9676-3399452d2117), without spawning any worker. Owner corrected fallback omissions and manual label in de88b3b/67a2fa5. Coordinator reviewed all3 pitch files and whitespace, then integrated as34a8ff3. All golden steps are preserved. These are Markdown script/slide-content/judge-answer documents, not an exported slide deck; slide assembly and actual rehearsal remain with Sunny/separate pitch owner.
 - A accidentally sent the user's email once in a Wikimedia download User-Agent; disclosed to Sunny and stopped. Current handoff redacts it; old d3c787a history retains it. No API secrets sent.
 - Superseded scratch Upstash expires November10; credentials/claim link privately at `/tmp/crimson-upstash-bootstrap-secret.md` mode0600. Let it expire; do not overwrite the account-owned hosting DB configuration with it.

@@ -29,9 +29,19 @@ export const site = {
   askAtCounter: "Ask at the counter",
   cakeToppings: "Peanut or coconut on any cake donut",
   storyHeading: "Our story",
+  photos: {
+    front: {
+      src: "/img/shop/front.webp",
+      alt: "Fresh Donuts & Deli storefront on State Street in South Salt Lake",
+    },
+    kitchen: {
+      src: "/img/shop/untitled-design.webp",
+      alt: "Donuts being prepared in the Fresh Donuts & Deli kitchen",
+    },
+  },
   storyParagraphs: [
     "For about 25 years, Fresh Donuts & Deli has been a family shop on State Street in South Salt Lake.",
-    "It's run by a husband-and-wife team who both emigrated from Cambodia. Regulars come in for raised rings, cake donuts, fritters, and buttermilk bars, and many of them get there early, because the case often sells out by the afternoon.",
+    "It's run by a husband-and-wife team who both emigrated from Cambodia.",
   ],
   quote: {
     before: "The Salt Lake Tribune says the shop makes doughnuts",

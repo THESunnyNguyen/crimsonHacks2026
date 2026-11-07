@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { site } from "@/content/site";
 import { statusAt } from "./hours";
 import { TodayStatus } from "./TodayStatus";
@@ -10,6 +11,15 @@ export function Hero() {
         {site.name}
       </h1>
       <TodayStatus initial={statusAt(new Date())} />
+      <Image
+        src={site.photos.front.src}
+        alt={site.photos.front.alt}
+        width={1500}
+        height={1000}
+        sizes="(min-width: 768px) 720px, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)"
+        loading="eager"
+        className="h-auto w-full rounded-theme border border-cocoa/15"
+      />
       <nav aria-label="Sections" className="flex flex-wrap gap-2">
         {site.nav.map((item) => (
           <a
