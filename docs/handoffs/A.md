@@ -29,7 +29,7 @@
   - second opinion (parallel, disagree flag, failure, late, same model)
   - the route: 401, 400, 415, 413, 200 strict request with a ≤1024px JPEG, 502, 503, and no store writes
   
-  **`npm test` only globs `lib/*.test.ts`, so these tests must be run explicitly.**
+  On this lane's base (`3f0b12a`, before the integration workflow), `npm test` only globbed `lib/*.test.ts`, so these tests had to be run explicitly. The integration workflow finds nested tests on its own, so they're now covered there.
 - `npm test` 4/4 pass. `npx tsc --noEmit` and eslint on lane files are clean. `npm run build` passes.
 - **Live API** (dev server, real OpenAI, synthetic images):
   - no PIN or wrong PIN → 401; no image → 400; text file → 415; `PUT /api/inventory` without a PIN → 401.
@@ -52,6 +52,5 @@
 
 ## Environment and disclosure
 - The worktree `.env` could not be edited because permission was denied. Tests ran with `VISION_MODEL=gpt-6-astra PARSE_MODEL=gpt-6-luna` set at process level. The copied `.env` still has stale model IDs and lacks `VISION_SECOND_MODEL`; it has the stale name `VISION_SECOND_OPINION` instead. No UPSTASH variables are set.
-- **Disclosure:** while fetching the Commons photo, one HTTP request to `upload.wikimedia.org` sent the User-Agent header `CrimsonHacksEval/1.0 (thesunnynguyen@gmail.com)`, which contains the user's email. This was a mistake; other requests used no identifying header. No secrets were sent.
+- **Disclosure:** while fetching the Commons photo, one HTTP request to `upload.wikimedia.org` sent the user's email address once, inside the User-Agent header. This was a mistake; other requests used no identifying header. No secrets were sent.
 - `.playwright-mcp/` (screenshots, logs, test images) is untracked local output and not committed.
-- Shared-change need: add `lib/vision/*.test.ts` to the `npm test` glob in `package.json` (lane 00 owns it).
