@@ -142,3 +142,10 @@ Transcode WebM to MP4 via ffmpeg, independently ffprobe duration and inspect fra
 verify offline HTML video playback, record HEAD/check results in this handoff.
 Keep provisional21:23 recording until final succeeds. Restore local demo seed
 when finished. Do NOT claim fixtures establish model accuracy or hosted Redis.
+
+##21:39 documentation reconciliation
+Applied the five NON-CONTRACT main edits into integration, preserving workflow's
+existing three-worker policy. `git diff --check` passed. Main originals and saved
+patch remain byte-identical. CONTRACTS.md unchanged: its rate/retry text and
+Ready semantics still need Sunny approval. Do not block reversible non-contract
+reconciliation on the earlier unnecessarily broad approval question.
