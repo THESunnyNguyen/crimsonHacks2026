@@ -159,7 +159,7 @@ test("POST /api/inventory/count: auth, validation, strict OpenAI request, second
     assert.ok(url.startsWith("data:image/jpeg;base64,"));
     const [, b64] = url.split("base64,");
     const meta = await sharp(Buffer.from(b64, "base64")).metadata();
-    assert.deepEqual([meta.width, meta.height], [1568, 1176]);
+    assert.deepEqual([meta.width, meta.height], [1024, 768]);
 
     // Second opinion: both models called, cake disagrees (3 vs 7) → flagged.
     process.env.VISION_SECOND_MODEL = "vision-second";

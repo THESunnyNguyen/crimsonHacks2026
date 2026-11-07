@@ -1,0 +1,9 @@
+{
+  "photos": [
+    {
+      "file": "commons-box-of-doughnuts.jpg",
+      "label": "Commons box of a dozen (not shop photo)",
+      "counts": { "raised": 7, "cake": 1, "specialty": 1, "filled_bars": 3 }
+    }
+  ]
+}
