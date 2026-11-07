@@ -3,7 +3,7 @@
 A different model catches different mistakes: **Codex reviews Claude's lanes (00, A, B, D); Claude reviews Codex's (C, E, F, H).** Run the review in the lane's own worktree (in Paradev: a new Codex/Claude session in that workspace).
 
 ## Prompt (paste as is; replace X)
-> You are reviewing branch for lane X before it merges into `main`. Don't edit files. Read `AGENTS.md`, `docs/CONTRACTS.md`, `docs/DEMO.md`, and `docs/tasks/<lane brief>`. Run `git diff main...HEAD` and `npm run build`. Check: (1) matches the contract types and routes exactly; (2) only touches files this lane owns; (3) staff routes call `requireStaff`; (4) no secrets or keys reach client code; (5) the brief's "Done when" holds; (6) the DEMO.md steps for this lane would work on stage. Reply with **MERGE** or **FIX FIRST**, plus a numbered list of concrete fixes (file:line). Skip style nitpicks.
+> Review lane X before integration. Don't edit files. Read AGENTS.md, the relevant contract/brief, and its handoff. Review `git diff <recorded-base-sha>...HEAD`, staged/unstaged changes and untracked source files. Run `npm run verify`; run `npm run test:demo` for integrated A/B/C flows. Check contracts, lane ownership, staff auth, client secrets, acceptance criteria and demo steps. Report **MERGE** or **FIX FIRST**, the reviewed SHA and dirty state, evidence (mocked versus live), and concrete fixes (file:line). Skip style nitpicks. See docs/WORKFLOW.md.
 
 - Claude Code: `claude --agent reviewer "Review lane X for merge."`
 - Codex: `codex -c model_reasoning_effort="high" "<prompt above>"`

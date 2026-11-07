@@ -1,0 +1,30 @@
+import { test } from "node:test";
+import assert from "node:assert/strict";
+import { mkdtempSync, writeFileSync, readFileSync, existsSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import path from "node:path";
+import { execFileSync, spawnSync } from "node:child_process";
+
+test("setup copies env into spaced worktree paths once, preserving local edits", (t) => {
+  const root = mkdtempSync(path.join(tmpdir(), "donut-setup-"));
+  t.after(() => rmSync(root, { recursive: true, force: true }));
+  const main = path.join(root, "main checkout");
+  const lane = path.join(root, "lane checkout");
+  const git = (...args) => execFileSync("git", ["-C", main, ...args], { stdio: "ignore" });
+  execFileSync("git", ["init", "-q", "-b", "main", main]);
+  git("config", "user.name", "Test"); git("config", "user.email", "test@example.invalid");
+  git("-c", "commit.gpgsign=false", "-c", "core.hooksPath=/dev/null", "commit", "--allow-empty", "-qm", "base");
+  git("worktree", "add", "-qb", "lane", lane);
+  writeFileSync(path.join(main, ".env"), "STAFF_PIN=1234\nUPSTASH_REDIS_REST_URL=\n");
+  const run = () => spawnSync("bash", [path.resolve("scripts/setup-worktree.sh"), "--env-only"], { cwd: lane, encoding: "utf8" });
+  assert.equal(run().status, 0);
+  assert.match(readFileSync(path.join(lane, ".env"), "utf8"), /STAFF_PIN=1234/);
+  writeFileSync(path.join(lane, ".env"), "STAFF_PIN=5678\n");
+  assert.equal(run().status, 0);
+  assert.equal(readFileSync(path.join(lane, ".env"), "utf8"), "STAFF_PIN=5678\n");
+  writeFileSync(path.join(main, ".env.local"), "UPSTASH_REDIS_REST_URL=https://example.invalid\n");
+  const rejected = run();
+  assert.notEqual(rejected.status, 0);
+  assert.equal(existsSync(path.join(lane, ".env.local")), false);
+  assert.doesNotMatch(rejected.stdout + rejected.stderr, /https:\/\/example.invalid/);
+});
