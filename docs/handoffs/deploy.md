@@ -1,16 +1,17 @@
 # Deployment handoff — November 6, 2026
 
-## Current status — 22:23 MST
+## Current status — 22:38 MST
 Production is LIVE: https://fresh-donuts-deli-crimson2026.vercel.app
 
-- Sunny approved production in the separate deployment chat ("terms accepted, deploy production") and main in this chat ("yes merge main, approved"). Both actions are completed.
-- Main now points to `230aab2`, including the separately authorized and cross-reviewed recolor, shop photos, and story copy. Application source deployed is `b15c1b0`; the following commit adds only its handoff.
-- Current production deployment is `dpl_6pqgmiUQecX19DfpTdrE6Mc3ptg8`, READY, as verified in `photos.md`; coordinator is aligning the local copy and independently checking the canonical alias.
-- Account-owned Free Upstash newDB in US-WEST-1 is configured. It supersedes the historical scratch DB below.
-- Vision uses `gpt-6.1-terra`, notes use `gpt-6-luna`. Before the styling-only deployment, real photo passed in9.741sec and typed demo notes in1.763sec; evidence `.artifacts/production/result.json`. No accuracy or reliable8sec claim.
-- Recolor owner verified hosted routes, PIN protection, and 390px browser layout; coordinator reran verify plus all3 fixture demo flows on both integrated recolor and photo changes. See `docs/handoffs/recolor.md` and `orchestrator.md` for exact evidence.
-- Actual physical-phone acceptance is still unconfirmed. Final offline recording starts after22:30 and is owned by the coordinator.
-- Vercel has no Git link; source pushes do not automatically deploy. Future application changes need deliberate deployment. Current integration additions after the deployed styling are documentation only.
+- Sunny's main and production approvals are explicit and both actions are complete.
+- Final reviewed/deployed application source: **85a914e18ccce8bccb33e3550f3dcd7df632624c**. Subsequent handoff and pitch commits are documentation only.
+- Production deployment **dpl_5pEivjyxXUMWSwMEHK9pcnVFi25U**, immutable https://fresh-donuts-deli-crimson2026-gcyt525kc.vercel.app, READY. Coordinator independently verified canonical alias, expected public/staff/auth HTTP results, and asset hash in `.artifacts/production/freeze-check.json`.
+- Recolor, user-supplied shop photos/story copy, and deli illustration have independent Claude reviews and author/coordinator verify+fixture demo passes. See `photos.md` and `orchestrator.md` for exact evidence.
+- Account-owned Free Upstash newDB, US-WEST-1, is configured. It supersedes the historical scratch DB below. Environment/database unchanged by design updates.
+- Vision uses `gpt-6.1-terra`, notes `gpt-6-luna`. Earlier production real photo passed9.741sec and typed demo notes1.763sec; no accuracy or reliable8sec claim.
+- Complete post-freeze live-AI/staged-image backup is saved on Desktop and verified offline. Source85a914e,99.72sec. Exact path/evidence in `orchestrator.md`.
+- Actual physical-phone full flow, QR scan, and timed pitch rehearsal remain unconfirmed. Visual design approval does not close those checks.
+- Vercel has no Git link: source pushes do not automatically deploy. Documentation-only main sync does not require redeployment.
 
 Everything below is historical setup evidence, not a current approval blocker.
 
