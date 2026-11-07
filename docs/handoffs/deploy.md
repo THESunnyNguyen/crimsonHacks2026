@@ -1,15 +1,15 @@
 # Deployment handoff — November 6, 2026
 
-## Current status — 22:38 MST
+## Current status — 22:56 MST
 Production is LIVE: https://fresh-donuts-deli-crimson2026.vercel.app
 
 - Sunny's main and production approvals are explicit and both actions are complete.
-- Final reviewed/deployed application source: **85a914e18ccce8bccb33e3550f3dcd7df632624c**. Subsequent handoff and pitch commits are documentation only.
-- Production deployment **dpl_5pEivjyxXUMWSwMEHK9pcnVFi25U**, immutable https://fresh-donuts-deli-crimson2026-gcyt525kc.vercel.app, READY. Coordinator independently verified canonical alias, expected public/staff/auth HTTP results, and asset hash in `.artifacts/production/freeze-check.json`.
-- Recolor, user-supplied shop photos/story copy, and deli illustration have independent Claude reviews and author/coordinator verify+fixture demo passes. See `photos.md` and `orchestrator.md` for exact evidence.
+- Final reviewed/deployed application source: **4f106acc6d56bf18dc24d5b7abde49b78b45938b**. Subsequent handoff and pitch commits are documentation only.
+- Production deployment **dpl_8XT5ChiRSN3jqFy19E6aAv9aNf3P**, immutable https://fresh-donuts-deli-crimson2026-lgfqkfzoz.vercel.app, READY. Coordinator independently verified the current alias and updated story in `.artifacts/production/story-check.json`; prior freeze HTTP/auth/asset checks are in `freeze-check.json`.
+- Recolor, user-supplied shop photos, deli illustration, and final Our Story copy have independent Claude reviews and author/coordinator verify+fixture demo passes. See `photos.md` and `orchestrator.md` for exact evidence.
 - Account-owned Free Upstash newDB, US-WEST-1, is configured. It supersedes the historical scratch DB below. Environment/database unchanged by design updates.
 - Vision uses `gpt-6.1-terra`, notes `gpt-6-luna`. Earlier production real photo passed9.741sec and typed demo notes1.763sec; no accuracy or reliable8sec claim.
-- Complete post-freeze live-AI/staged-image backup is saved on Desktop and verified offline. Source85a914e,99.72sec. Exact path/evidence in `orchestrator.md`.
+- Complete post-freeze live-AI/staged-image backup is saved on Desktop and verified offline. Source4f106ac,101.68sec. Exact path/evidence in `orchestrator.md`.
 - Actual physical-phone full flow, QR scan, and timed pitch rehearsal remain unconfirmed. Visual design approval does not close those checks.
 - Vercel has no Git link: source pushes do not automatically deploy. Documentation-only main sync does not require redeployment.
 
