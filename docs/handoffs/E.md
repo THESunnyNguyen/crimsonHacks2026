@@ -47,7 +47,47 @@ Clean
 
 <!-- Agent-maintained progress below; refresh preserves this section. -->
 
-## Reviewed integration — 2026-11-06, 23:11 Denver
+## Current production — supersedes earlier scope and deployment notes
+
+Coordinator-confirmed state as of **2026-11-06 23:24 America/Denver**:
+
+- Deployment **`dpl_HMH9zfRo2TdX15NUq3zGg21ZNnSU`** is **READY**, built from
+  clean tracked source **`313e63a180873506789a7cd9ed2a5cd77ea14f88`**.
+  The canonical URL remains [Fresh Donuts & Deli](https://fresh-donuts-deli-crimson2026.vercel.app).
+- The root coordinator used the existing original production approval after
+  Sunny's newer explicit main-push approval. The earlier local-only freeze,
+  "no deployment performed", and "deployment outside scope" statements below
+  describe historical checkpoints; they do not describe the current release.
+- **Pay-at-pickup preorders are live.** Production Stripe keys and the production
+  Stripe webhook remain unconfigured; the hosted card-payment option is disabled.
+  This deployment does not enable real charges or establish merchant readiness.
+- The parent personally reran `npm run verify` (including **43 tests**) and all
+  **6 fixture browser flows** in integration. The parent also reran the pinned
+  real scratch Redis probe on `313e63a` at **23:17**: last-stock atomic contention,
+  idempotent repeat, changed-payload conflict, inventory/status behavior, and
+  synthetic checkout draft/fulfillment deduplication passed; scratch data was
+  restored. The dedicated temporary DB was separate from production `newDB`.
+- The parent's **390px hosted smoke** submitted a public preorder and received
+  **HTTP 201**. The staff record was verified as `source: web`, payment `unpaid`,
+  subtotal **1980 cents**. Today's holds remained unchanged, and the test order
+  **`F0A2FD5D-788A-47B2-96C1-25167AD618D3`** was cancelled afterward. The report
+  also confirms no mobile overflow and disabled hosted Stripe checkout.
+- Exact hosted evidence in this integration worktree:
+  **`.artifacts/production/preorder-check.json`**. It records source `313e63a`,
+  `passed: true`, and completion at **23:21:34 Denver**.
+- **Evidence boundaries:** hosted smoke proves deployed pay-at-pickup persistence
+  and staff visibility. The actual Stripe sandbox rehearsal below used a local
+  app, a temporary Stripe test account, and a local webhook listener; its real
+  test-card success/decline evidence does not imply hosted cards are enabled.
+  The Redis probe's checkout session IDs were synthetic, with no payment or
+  Stripe API request. The six automated browser flows use fixture AI/Stripe.
+- The coordinator owns the release/backup closeout and final handoff commit.
+  This lane's update edits only this integration `docs/handoffs/E.md`; it does
+  not commit, push, deploy, or change production credentials. The **23:30 Denver
+  no-commit cutoff** remains in force.
+
+
+## Historical reviewed integration — 2026-11-06, 23:11 Denver
 - Sunny's explicit approval to push main supersedes the historical freeze below.
   Integration commit: `5197d2a321615bb8c31ae8634c31b8ed5f1183c5`, created at
   **23:09:15 America/Denver**, before the 23:30 hard cutoff. Authorized remote
@@ -80,7 +120,7 @@ Clean
   up and temporarily stashed for the clean merge, then restored unchanged and
   unstaged. It is excluded from the feature and release commits.
 
-## Latest authorization — 2026-11-06, 23:05 Denver
+## Main-push authorization history — 2026-11-06, 23:05 Denver
 - Sunny explicitly requested: **"push to main if it looks good enough"**, then
   reiterated **"Make sure the last commit is in by 11:30pm"**.
 - This supersedes the earlier local-only release freeze for Lane E, conditional
@@ -187,11 +227,13 @@ Clean
 - 3DS, refunds, actual Stripe-originated redelivery, and production payments have
   not been verified. Success/decline/cancellation and initial webhook delivery
   were verified against actual Stripe sandbox services, with no money movement.
-- Redis storage paths implement atomic writes and shared rate limits but have not been exercised against deployed Upstash in this session. Local JSON paths are tested.
+- The real dedicated scratch Redis probe and hosted pay-at-pickup smoke now cover
+  the storage gap described in earlier checkpoints. Shared rate-limit contention
+  was not part of the scratch probe; production oversell races were not induced.
 - Cards are tomorrow-only; today uses pay at pickup. Closed Sundays; max 36 donuts. Prices are a demo subtotal without tax.
 - Cancelling a staff order does not refund a Stripe test payment. Abandoned checkout drafts remain until seed/reset and do not hold stock.
-- Required cross-review and explicit integration/push approval are complete.
-  Deployment and production payment setup remain outside this release.
+- Required cross-review, integration/push approval, and the coordinator-owned
+  pay-at-pickup deployment are complete. Production card payments remain disabled.
 
 ## Resume
 1. Start with `git status --short` and `git log -5 --oneline`; preserve the unrelated
@@ -201,6 +243,7 @@ Clean
    worktree's existing isolated CLI profile and ignored `.env.local` while the
    sandbox is valid. Start port 3105 only if free; changing it requires updating
    `APP_BASE_URL` and webhook forwarding. Never copy these keys to production.
-3. For a future hosted demo, obtain a separate deployment decision and deliberately
-   choose pay-at-pickup only or configure a suitable sandbox and signed webhook.
-   Address Redis, 3DS, refunds, and production-readiness limits before broader use.
+3. Use the current production section above for deployed state and evidence.
+   Leave hosted Stripe disabled; any future hosted card configuration requires a
+   separate decision. Address 3DS, refunds, and merchant-readiness limits before
+   broader use. The coordinator owns remaining release and backup documentation.

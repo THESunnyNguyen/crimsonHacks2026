@@ -1,17 +1,19 @@
 # Deployment handoff — November 6, 2026
 
-## Current status — 22:56 MST
+## Current status — 23:26 MST
 Production is LIVE: https://fresh-donuts-deli-crimson2026.vercel.app
 
-- Sunny's main and production approvals are explicit and both actions are complete.
-- Final reviewed/deployed application source: **4f106acc6d56bf18dc24d5b7abde49b78b45938b**. Subsequent handoff and pitch commits are documentation only.
-- Production deployment **dpl_8XT5ChiRSN3jqFy19E6aAv9aNf3P**, immutable https://fresh-donuts-deli-crimson2026-lgfqkfzoz.vercel.app, READY. Coordinator independently verified the current alias and updated story in `.artifacts/production/story-check.json`; prior freeze HTTP/auth/asset checks are in `freeze-check.json`.
-- Recolor, user-supplied shop photos, deli illustration, and final Our Story copy have independent Claude reviews and author/coordinator verify+fixture demo passes. See `photos.md` and `orchestrator.md` for exact evidence.
-- Account-owned Free Upstash newDB, US-WEST-1, is configured. It supersedes the historical scratch DB below. Environment/database unchanged by design updates.
-- Vision uses `gpt-6.1-terra`, notes `gpt-6-luna`. Earlier production real photo passed9.741sec and typed demo notes1.763sec; no accuracy or reliable8sec claim.
-- Complete post-freeze live-AI/staged-image backup is saved on Desktop and verified offline. Source4f106ac,101.68sec. Exact path/evidence in `orchestrator.md`.
-- Actual physical-phone full flow, QR scan, and timed pitch rehearsal remain unconfirmed. Visual design approval does not close those checks.
-- Vercel has no Git link: source pushes do not automatically deploy. Documentation-only main sync does not require redeployment.
+- Explicit main and production approvals are complete. Sunny's newer23:05 approval also authorized the reviewed Lane E main push.
+- Final deployed source **313e63a180873506789a7cd9ed2a5cd77ea14f88**. Subsequent release handoff commits are documentation only.
+- Deployment **dpl_HMH9zfRo2TdX15NUq3zGg21ZNnSU**, immutable https://fresh-donuts-deli-crimson2026-h50zveomo.vercel.app, READY/production. Current alias independently checked.
+- Public pay-at-pickup preorders are LIVE. Hosted Stripe checkout is DISABLED because no production Stripe keys/webhook were configured. Local Stripe sandbox success is not hosted-payment acceptance.
+- Coordinator verify43tests and all6 fixture browser flows passed. Real isolated Redis contention/idempotency probe personally rerun on final source. Hosted390px preorder HTTP201/staff persistence/unchanged today holds passed23:21:34; test order cancelled afterward. Exact evidence in orchestrator.md and E.md.
+- Clean tracked archive `.artifacts/deploy/main-preorder-313e63a`, dry283files/3,634,703bytes. No local secrets or runtime data uploaded. `.artifacts/production/preorder-deployment.json` records deployment identity.
+- Account-owned Free Upstash newDB, US-WEST-1 remains configured. Never replace with scratch DB. Vision gpt-6.1-terra; notes gpt-6-luna. Earlier real-photo/typed-demo-notes live run passed; no model accuracy or reliable8sec claim.
+- Post-freeze core backup refreshed against313e63a,103.28sec, Desktop MP4 verified offline. Golden path includes full/low/empty/notes/Save/Ready; preorder verified separately.
+- Physical phone flow, QR scan, timed pitch rehearsal remain unconfirmed. Visual design approval does not close functional checks.
+- Vercel has no Git link; documentation pushes do not redeploy. Previous story-only deployment dpl_8XT5ChiRSN3jqFy19E6aAv9aNf3P is available as rollback context.
+- 23:30 Denver cutoff: no commits afterward. Main's original dirty contract note remains excluded.
 
 Everything below is historical setup evidence, not a current approval blocker.
 
