@@ -283,12 +283,24 @@ test("preorder persistence and Stripe sandbox lifecycle (fixture transport, real
       "configuration fails closed for missing or live Stripe keys",
       () => {
         assert.equal(payments.stripeSandboxEnabled(), true);
-        process.env.STRIPE_SECRET_KEY = "sk_live_not_allowed";
-        assert.equal(payments.stripeSandboxEnabled(), false);
-        assert.throws(
-          payments.sandboxStripe,
-          (e) => e instanceof Response && e.status === 503,
-        );
+        for (const key of ["rk_test_fixture", "rkcs_test_fixture"]) {
+          process.env.STRIPE_SECRET_KEY = key;
+          assert.equal(payments.stripeSandboxEnabled(), true);
+        }
+        for (const key of [
+          "",
+          "sk_live_not_allowed",
+          "rk_live_not_allowed",
+          "rkcs_live_not_allowed",
+          "invalid_test_key",
+        ]) {
+          process.env.STRIPE_SECRET_KEY = key;
+          assert.equal(payments.stripeSandboxEnabled(), false);
+          assert.throws(
+            payments.sandboxStripe,
+            (e) => e instanceof Response && e.status === 503,
+          );
+        }
         process.env.STRIPE_SECRET_KEY = "sk_test_fixture";
         process.env.APP_BASE_URL = "javascript:alert(1)";
         assert.equal(payments.stripeSandboxEnabled(), false);

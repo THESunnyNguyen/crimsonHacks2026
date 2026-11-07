@@ -22,7 +22,17 @@ APP_BASE_URL=http://localhost:3105
 ```
 
 Only test keys are accepted. A publishable key isn't needed for this hosted
-redirect flow. Run Stripe CLI forwarding from your own terminal:
+redirect flow.
+
+Restricted sandbox keys (`rk_test_`) and temporary claimable-sandbox keys
+(`rkcs_test_`) are also accepted when they grant Checkout and webhook access.
+Live variants remain disabled. Temporary CLI sandboxes expire after seven days;
+they can be provisioned without account registration using
+`stripe --config .artifacts/stripe/config.toml sandboxes create --from-git --non-interactive`.
+Keep the CLI profile and output ignored: both contain credentials. Use the same
+`--config` option for that sandbox's listener; see `stripe sandboxes create --help`.
+
+For your own existing account, run Stripe CLI forwarding from your own terminal:
 
 ```sh
 stripe login
@@ -63,12 +73,45 @@ preorder persistence. Checkout navigation/status UI use explicit browser fixture
 the original inventory/call-notes tests also run. No runtime fake-payment mode is
 added to the shipped app. Evidence lives under `.artifacts/demo/`.
 
-Actual Stripe-hosted payment completion and deployed Redis behavior must be
-rehearsed separately. Abandoned drafts are retained in demo storage until the next
+Actual Stripe-hosted payment completion and deployed Redis behavior require
+separate checks from the automated fixture suite. Abandoned drafts are retained in demo storage until the next
 seed/reset; they never appear on the staff board or reserve stock. Tax is not
 calculated. Cancelling an order on the staff board does not refund a Stripe test
 payment. Same-day card checkout would require temporary inventory holds and expiry
 handling; this version deliberately limits cards to tomorrow.
+
+## Local rehearsal completed November 6
+
+A temporary Stripe sandbox was provisioned in an isolated CLI profile at
+`.artifacts/stripe/config.toml`; test configuration is in ignored `.env.local`.
+It expires November 14, 2026 unless claimed. No production keys or release settings
+were changed. Keep all profile files and logs private; they contain credentials.
+
+Verified against actual Stripe sandbox APIs and hosted Checkout:
+- A $19.80 test-card payment completed, its Stripe-delivered signed webhook returned
+  HTTP 200, the return page confirmed the correct pickup, and staff saw one paid order.
+- The insufficient-funds test card failed; cancellation returned to the app and
+  neither action created an order. Expiring that sandbox session produced the app's
+  `expired` state.
+- Three concurrent local replays of the retrieved real event, re-signed with the
+  listener secret, returned HTTP 200 and preserved one order. This was a local
+  replay, not a Stripe-originated redelivery.
+
+Evidence: `.artifacts/stripe/rehearsal-result.json` and screenshots in the same
+directory. 3DS, refunds, deployed Redis, and production payments remain untested.
+Rehearsal processes were stopped afterward. To resume this local sandbox, use two
+terminals (the CLI profile already has credentials; do not run `stripe login`):
+
+```sh
+npm run dev -- --hostname 127.0.0.1 --port 3105
+```
+
+```sh
+npm exec --yes --package=@stripe/cli -- stripe --config .artifacts/stripe/config.toml listen --events checkout.session.completed,checkout.session.async_payment_succeeded --forward-to http://127.0.0.1:3105/api/webhooks/stripe
+```
+
+The release freeze still applies: this local rehearsal does not authorize a push,
+merge, deployment, or production payment configuration.
 
 ## References
 

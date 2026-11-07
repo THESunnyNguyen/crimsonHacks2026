@@ -34,7 +34,7 @@ function checkoutOrigin(): string | null {
 
 export function stripeSandboxEnabled() {
   return !!(
-    process.env.STRIPE_SECRET_KEY?.startsWith("sk_test_") &&
+    /^(?:sk|rk|rkcs)_test_/.test(process.env.STRIPE_SECRET_KEY ?? "") &&
     process.env.STRIPE_WEBHOOK_SECRET?.startsWith("whsec_") &&
     checkoutOrigin()
   );

@@ -33,7 +33,7 @@ Stripe dependency/env names, and related tests/docs. It is not integrated into m
   No public endpoint lists customer names or phone numbers.
 - Creation routes share a 5/minute/IP limit; status checks allow 40/minute/IP.
   Redis limits are shared across instances; local development uses one process bucket.
-- Env: `STRIPE_SECRET_KEY` (only `sk_test_`), `STRIPE_WEBHOOK_SECRET`,
+- Env: `STRIPE_SECRET_KEY` (sandbox `sk_test_`, `rk_test_`, or temporary `rkcs_test_`), `STRIPE_WEBHOOK_SECRET`,
   `APP_BASE_URL` (exact site origin). Missing configuration disables card checkout;
   pay-at-pickup continues working. Live keys are intentionally unsupported.
 - These are concept-demo orders and test payments. Tax, actual merchant operations,
