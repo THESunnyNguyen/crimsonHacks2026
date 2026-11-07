@@ -32,8 +32,9 @@ worktrees; cloud credentials should be configured separately.
 - `npm run verify`: lint, tests, production build (including TypeScript), and
   offline asset validation when F is present. Stops on failure. Full logs and a
   JSON result live in `.artifacts/verify/`; only failures print a log tail.
-- `npm run test:demo`: three browser acceptance checks in a disposable copy of
-  this worktree with fixture AI responses and real local persistence. Requires
+- `npm run test:demo`: six browser acceptance checks in a disposable copy of
+  this worktree with fixture AI/payment responses, a fixed Friday-morning clock,
+  and real local preorder persistence. Requires
   A/B/C to be integrated; missing UI is a failure, never a skipped green result.
   Install the browser once with `npx playwright install chromium`.
 
@@ -41,7 +42,8 @@ During development, use focused tests or Next.js runtime compilation diagnostics
 Run the full verification once before handoff, then rerun affected checks after
 fixes. Live AI evaluations remain separate: `scripts/eval-count.ts` and
 `scripts/parse-samples.ts` need credentials and real inputs. The demo tests do
-not establish model accuracy, latency, microphone support, or deployed Redis.
+  not establish model accuracy, latency, microphone support, actual Stripe-hosted
+  payment completion, or deployed Redis. See `docs/STRIPE-DEMO.md` for payment setup.
 
 ## Prompt
 

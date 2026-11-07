@@ -1,0 +1,79 @@
+# Preorders and Stripe sandbox demo
+
+Branch: `feat/preorder-stripe-sandbox`. Keep local until ready for cross-review
+and explicit approval to integrate/push. No changes to production configuration.
+
+## Start with pay at pickup
+
+Run `npm run dev -- --port 3105` (choose another port if occupied), then open
+`http://localhost:3105/#preorder`. Choose an assorted dozen or individual donuts,
+pickup day/time, name, and phone. Submit with **Pay at pickup**. The order appears
+on `/staff` within the next five-second poll; today's quantities reduce available
+stock. Both surfaces identify the concept demo. Sunday is closed.
+
+## Enable actual Stripe sandbox checkout
+
+Create/use a Stripe sandbox and add these to the git-ignored `.env`:
+
+```dotenv
+STRIPE_SECRET_KEY=sk_test_your_sandbox_key
+STRIPE_WEBHOOK_SECRET=whsec_your_local_listener_secret
+APP_BASE_URL=http://localhost:3105
+```
+
+Only test keys are accepted. A publishable key isn't needed for this hosted
+redirect flow. Run Stripe CLI forwarding from your own terminal:
+
+```sh
+stripe login
+stripe listen --events checkout.session.completed,checkout.session.async_payment_succeeded --forward-to localhost:3105/api/webhooks/stripe
+```
+
+Put the listener's signing secret in `STRIPE_WEBHOOK_SECRET`, then restart Next.js.
+Use the same hostname and port in the browser and `APP_BASE_URL`.
+
+Choose **tomorrow** (when it is Mon–Sat), then **Try a test card with Stripe**.
+The server calculates USD totals from the menu and redirects to hosted Checkout.
+Use `4242 4242 4242 4242`, any future expiry and any three-digit CVC. No money moves.
+The return page waits for the webhook to save the order; staff see **Test payment · paid**.
+
+For a later Vercel preview, configure the sandbox webhook endpoint to the exact
+preview origin plus `/api/webhooks/stripe`, use that endpoint's signing secret,
+and set `APP_BASE_URL` to the preview origin. Local Stripe CLI signing secrets and
+Dashboard webhook endpoint secrets differ. The deployed store requires Upstash.
+
+## Smoke test
+
+1. Place a pay-at-pickup order for today; see one staff card and lower public stock.
+2. Pay for tomorrow with the success test card; see one paid sandbox card.
+3. Use decline card `4000 0000 0000 9995`; no paid order should appear.
+4. Cancel checkout; the return page offers another preorder without confirming one.
+5. Resend the completed event from Stripe; the same order remains, even if staff
+   have already marked it Ready. Reloading the return page doesn't create an order.
+6. Stop webhook forwarding, complete a test payment, and observe the pending
+   confirmation message. Resume forwarding and resend the event to confirm it.
+
+`npm run verify` covers validation, stock races, request deduplication, Stripe
+request parameters, raw-body webhook signatures, mismatched amounts, live-event
+rejection, unpaid/expired states and repeated deliveries. The Stripe SDK transport
+is a deterministic fixture in these tests; they don't contact a Stripe account.
+
+`npm run test:demo` uses a disposable copy, a Friday-morning clock, and real local
+preorder persistence. Checkout navigation/status UI use explicit browser fixtures;
+the original inventory/call-notes tests also run. No runtime fake-payment mode is
+added to the shipped app. Evidence lives under `.artifacts/demo/`.
+
+Actual Stripe-hosted payment completion and deployed Redis behavior must be
+rehearsed separately. Abandoned drafts are retained in demo storage until the next
+seed/reset; they never appear on the staff board or reserve stock. Tax is not
+calculated. Cancelling an order on the staff board does not refund a Stripe test
+payment. Same-day card checkout would require temporary inventory holds and expiry
+handling; this version deliberately limits cards to tomorrow.
+
+## References
+
+Original implementation; no sample source copied. API behavior was checked against
+[Stripe hosted Checkout](https://docs.stripe.com/checkout/quickstart),
+[fulfillment](https://docs.stripe.com/checkout/fulfillment.md?ui=full-page),
+[webhook signatures](https://docs.stripe.com/events/manage-webhook-endpoints), and
+[test cards](https://docs.stripe.com/testing), plus the installed Next.js 16.4.5 docs.

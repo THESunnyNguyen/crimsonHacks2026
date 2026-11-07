@@ -2,6 +2,43 @@
 
 Changes need Sunny's OK. Ambiguity here becomes merge conflicts later.
 
+### Preorder + sandbox extension (feature branch, authorized by Sunny)
+
+Sunny requested implementation of working preorders and Stripe sandbox checkout
+on a separate branch, to push later. This extension owns the E files plus
+`lib/preorder*`, `lib/pickup.ts`, `lib/stripe.ts`, the necessary storage/type
+additions, checkout/webhook/return routes, preorder copy, the staff payment label,
+Stripe dependency/env names, and related tests/docs. It is not integrated into main.
+
+- Public orders: priced donuts only, 1–36 total, required name/phone, today or
+  tomorrow, Mon–Sat 05:00–16:45 in 15-minute slots, at least 15 minutes ahead.
+- `POST /api/preorder` retains the planned body; requires a UUID
+  `Idempotency-Key` header. Returns a **public receipt**, not customer contact
+  details: `{ id, pickupDate, pickupTime, items, payment }`.
+- Same-day stock validation and insertion are atomic. Orders still use
+  `source: "web"`, `status: "new"`. Existing staff routes remain PIN-protected.
+- Optional `Order.payment`: `{ method: "pay_at_pickup" | "stripe_sandbox",
+  status: "unpaid" | "paid", amountTotal: number, currency: "usd", sessionId?: string }`.
+  Amounts are integer cents. Fulfillment status remains separate. Store-internal
+  request fingerprints prevent a reused idempotency key from changing an order.
+- `POST /api/checkout`: same body/header, **tomorrow only**, returns `{ url }`.
+  Saves a durable draft, then creates a card-only Stripe sandbox Checkout Session.
+  Drafts are not orders and do not hold inventory. Checkout expires after one hour.
+- `POST /api/webhooks/stripe`: verifies the raw-body Stripe signature and rejects
+  live events; a completed, paid session with matching order metadata, amount and
+  currency creates one order. Replays preserve the existing fulfillment status.
+- `GET /api/checkout?session_id=cs_test_...`: returns
+  `{ state: "unpaid" | "expired" | "confirming" | "confirmed", order?: receipt }`.
+  It verifies with Stripe and only reports confirmed after webhook persistence.
+  No public endpoint lists customer names or phone numbers.
+- Creation routes share a 5/minute/IP limit; status checks allow 40/minute/IP.
+  Redis limits are shared across instances; local development uses one process bucket.
+- Env: `STRIPE_SECRET_KEY` (only `sk_test_`), `STRIPE_WEBHOOK_SECRET`,
+  `APP_BASE_URL` (exact site origin). Missing configuration disables card checkout;
+  pay-at-pickup continues working. Live keys are intentionally unsupported.
+- These are concept-demo orders and test payments. Tax, actual merchant operations,
+  refunds, and same-day card reservations are outside this branch's scope.
+
 ## Menu (seed: `docs/menu.seed.json`, real prices from Sunny)
 - Prices: specialty (fritters, cinnamon rolls, cream cheese croissants) **$3.49** · filled donuts & buttermilk bars **$2.59** · regular raised & cake donuts **$1.65**.
 - Cake donuts can get **peanut or coconut** topping (menu note, no price change).
