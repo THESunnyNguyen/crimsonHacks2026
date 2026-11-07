@@ -1,5 +1,16 @@
 # Deployment handoff — November 6, 2026
 
+## Superseding status — 21:52 MST
+Production is LIVE after Sunny explicitly approved in the separate deployment
+chat: "terms accepted, deploy production." Account-owned Free Upstash newDB in
+US-WEST-1 supersedes the temporary scratch database described below.
+Live: https://fresh-donuts-deli-crimson2026.vercel.app
+Deployment source bd13056; application code equals current integration. The other
+agent reported Redis persistence, staff auth, inventory/order updates and live
+AI parsing passed. Parent independently confirmed public HTTP200 and staff401.
+Main merge now separately approved in this chat. Earlier blocked notes below
+are historical. Actual-phone acceptance and post-freeze backup still pending.
+
 Last checked: **21:44 MST**. Integration source: `0f233aed25cc5e5d53cbf63cad4f1f40bb3b52bb`.
 
 ## Status: blocked before build

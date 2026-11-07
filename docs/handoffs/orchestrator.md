@@ -1,5 +1,28 @@
 # Integration handoff — November 6, 2026
 
+## Current authorization/status — 21:52 MST
+Sunny explicitly said **"yes merge main, approved"** in this chat at21:52.
+Proceed with reviewed integration merge, required checks, main push and production
+verification. Earlier pending-approval notes below are historical, superseded.
+Keep original main edits recoverable; five non-contract edits are incorporated;
+CONTRACTS.md local note remains preserved, not silently committed. Ready stays
+release-only under current contract unless Sunny separately approves its change.
+
+Other ongoing deployment chat was checked via Paradev sessions read:
+workspace7efb4a55-644e-4e85-838d-5911da0a581f,
+session6896a636-0c09-4d01-9ad9-13d3eb8d1d66.
+Sunny explicitly said **"terms accepted, deploy production."** there.
+That agent completed Production deployment and real Redis/staff/AI parse checks.
+Account-owned Free Upstash **newDB**, US-WEST-1, is linked; the coordinator's
+72-hour scratch database is superseded for hosting and may expire naturally.
+Live URL: https://fresh-donuts-deli-crimson2026.vercel.app
+Deployment: fresh-donuts-deli-crimson2026-b1kz5fjn9.vercel.app, READY/production,
+source bd13056. Application files match current integration exactly; later changes
+are docs. Parent independently confirmed /200, /api/inventory200, unauth orders401.
+No duplicate deploy while the other agent was active; it has finished its checks.
+Still outstanding: actual-phone acceptance, final backup AFTER22:30 freeze,
+rehearsal and final keyboard-down monitoring. No more pitch workers.
+
 Coordinator operates in existing integration worktree:
 `/Users/sunnynguyen/.paradev/worktrees/crimsonHacks2026/orchestrator-crimson-hacks-173615f7`.
 Original chat cwd b578253d was fast-forwarded to6004e25 for isolated Pitch work;
