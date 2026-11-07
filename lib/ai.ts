@@ -46,7 +46,7 @@ export function textJSON<T>(
   return structured(
     [{ role: "user", content: [{ type: "input_text", text: prompt }] }],
     schema,
-    options.model ?? process.env.PARSE_MODEL ?? "gpt-6-luna",
+    options.model || process.env.PARSE_MODEL || "gpt-6-luna",
   );
 }
 export async function visionJSON<T>(
@@ -70,21 +70,29 @@ export async function visionJSON<T>(
       },
     ],
     schema,
-    options.model ?? process.env.VISION_MODEL ?? "gpt-6-astra",
+    options.model || process.env.VISION_MODEL || "gpt-6-astra",
   );
 }
 export async function transcribe(audio: File | Blob | Buffer): Promise<string> {
-  const file =
-    audio instanceof File
-      ? audio
-      : await toFile(
-          audio,
-          audio instanceof Blob && audio.type.includes("mp4")
-            ? "audio.mp4"
-            : "audio.webm",
-        );
+  const type = audio instanceof Blob ? audio.type.split(";")[0] : "audio/webm";
+  const extensions: Record<string, string> = {
+    "audio/mp4": "mp4",
+    "audio/x-m4a": "m4a",
+    "audio/m4a": "m4a",
+    "audio/ogg": "ogg",
+    "audio/wav": "wav",
+    "audio/x-wav": "wav",
+    "audio/mpeg": "mp3",
+    "audio/flac": "flac",
+    "audio/webm": "webm",
+  };
+  const file = await toFile(
+    audio instanceof Blob ? await audio.arrayBuffer() : audio,
+    `audio.${extensions[type] || "webm"}`,
+    { type: type || "audio/webm" },
+  );
   const result = await client().audio.transcriptions.create({
-    model: process.env.TRANSCRIBE_MODEL ?? "gpt-transcribe",
+    model: process.env.TRANSCRIBE_MODEL || "gpt-transcribe",
     file,
   });
   return result.text;

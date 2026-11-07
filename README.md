@@ -26,7 +26,7 @@ Model IDs verified against the account model list on November 6, 2026: `gpt-6-as
 
 ## Deployment
 
-Import this GitHub repository into Vercel as a Next.js app and attach Upstash Redis. Configure `STAFF_PIN`, the OpenAI key/model values, and both `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` in Vercel. Vercel deployments fail closed without Redis rather than attempting ephemeral filesystem writes. Run `npm run seed` only with credentials for the intended deployment's Redis. Preview deployments should use a separate Redis database from production.
+Import this GitHub repository into Vercel as a Next.js app and attach Upstash Redis. Configure `STAFF_PIN`, the OpenAI key/model values, and both `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` in Vercel. Vercel deployments fail closed without Redis rather than attempting ephemeral filesystem writes. Run `npm run seed -- --yes` only with credentials for the intended deployment's Redis. Remote resets require explicit `--yes`; the demo reset uses `npm run seed:demo -- --yes`. If the Marketplace exposes `KV_REST_API_URL` and `KV_REST_API_TOKEN`, configure the contract's `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` with the matching values before deployment; the app deliberately selects Redis through the contracted names. Preview deployments should use a separate Redis database from production.
 
 Merge to `main` only after cross-review (`docs/tasks/REVIEW.md`); `main` auto-deploys. A deployment is not verified by a successful local build: check the production URL and storage round trip.
 
