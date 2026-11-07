@@ -1,35 +1,23 @@
-import { z } from "zod";
 import { requireStaff } from "@/lib/auth";
 import { handle, json } from "@/lib/http";
-import { today } from "@/lib/time";
-import { orderSchema } from "@/lib/validation";
+import { DraftError, parseBodySchema, parseOrder } from "@/lib/parse/order";
+import { getMenu } from "@/lib/store";
 
 export const dynamic = "force-dynamic";
 
-const bodySchema = z.object({ text: z.string().trim().min(1).max(4000) });
-
-// Stub: lane C replaces this with OpenAI parsing. Returns a fixed, valid draft.
 export function POST(req: Request) {
   return handle(async () => {
     requireStaff(req);
-    const { text } = bodySchema.parse(await req.json());
-    const tomorrow = today(new Date(Date.now() + 24 * 60 * 60 * 1000));
-    return json(
-      orderSchema.parse({
-        customerName: "Maria",
-        phone: "801-555-0100",
-        pickupDate: tomorrow,
-        pickupTime: "07:30",
-        items: [
-          { menuItemId: "raised-glazed", qty: 12 },
-          { menuItemId: "fritter", qty: 2 },
-        ],
-        notes: `Stub draft (AI not connected). Original notes: ${text}`.slice(
-          0,
-          2000,
-        ),
-        source: "notes",
-      }),
-    );
+    const { text } = parseBodySchema.parse(await req.json());
+    try {
+      return json(await parseOrder(text, await getMenu()));
+    } catch (e) {
+      if (e instanceof DraftError)
+        return json(
+          { error: "Could not create a complete draft. Enter the order manually." },
+          422,
+        );
+      throw e;
+    }
   });
 }
