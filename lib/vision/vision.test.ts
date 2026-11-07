@@ -105,7 +105,7 @@ test("levels match the public display rule", () => {
 test("resize bounds the long side, keeps aspect, auto-rotates, never enlarges", async () => {
   const big = await prepareImage(await photo(4032, 3024));
   assert.equal(big.width, MAX_SIDE);
-  assert.equal(big.height, 1176);
+  assert.equal(big.height, 768);
   assert.equal((await sharp(big.jpeg).metadata()).format, "jpeg");
   // EXIF orientation 6 = rotated 90°: a landscape sensor image shot in portrait.
   const rotated = await sharp(await photo(3000, 2000))
@@ -113,7 +113,7 @@ test("resize bounds the long side, keeps aspect, auto-rotates, never enlarges", 
     .withMetadata({ orientation: 6 })
     .toBuffer();
   const upright = await prepareImage(rotated);
-  assert.deepEqual([upright.width, upright.height], [1045, MAX_SIDE]);
+  assert.deepEqual([upright.width, upright.height], [683, MAX_SIDE]);
   const small = await prepareImage(await photo(640, 480));
   assert.deepEqual([small.width, small.height], [640, 480]);
   await assert.rejects(

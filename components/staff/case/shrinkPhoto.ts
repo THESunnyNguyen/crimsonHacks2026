@@ -1,7 +1,7 @@
 // Downscale on the phone before upload: a 12 MP photo becomes ~300 KB, which
 // uploads fast on a hotspot and stays under Vercel's 4.5 MB body limit. The
 // server resizes again with sharp, so this is only an optimization.
-const MAX_SIDE = 1568;
+const MAX_SIDE = 1024;
 
 export async function shrinkPhoto(file: File): Promise<Blob> {
   try {

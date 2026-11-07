@@ -5,7 +5,7 @@ import type { CountResult } from "@/lib/types";
 import { countPrompt } from "./prompt";
 import { aiCountSchema, toCountResult, withSecondOpinion, type AiCount } from "./schema";
 
-export const MAX_SIDE = 1568;
+export const MAX_SIDE = 1024;
 export const MAX_UPLOAD_BYTES = 10 * 1024 * 1024;
 export const TARGET_MS = 8000;
 const PRIMARY_TIMEOUT_MS = 25000;
