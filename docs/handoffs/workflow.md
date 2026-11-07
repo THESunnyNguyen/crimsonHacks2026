@@ -2,8 +2,8 @@
 
 - Branch: `project-worktree-review-b3420790`
 - Base commit: `3f0b12a832ab35ad5f5b7d4e79ad7c790005bea2`
-- Snapshot commit: `166804f5bb311f7418fcc0c2cc41b48ee4b84d4c`
-- Refreshed: 2026-11-07T04:00:04.238Z
+- Snapshot commit: `d529d1a9e18a1c1d4bdafe4f9880aedd87e5ed54`
+- Refreshed: 2026-11-07T04:01:52.500Z
 - Worktree: `/Users/sunnynguyen/.paradev/worktrees/crimsonHacks2026/review-current-state-project-b3420790`
 
 ## Committed changes since base
@@ -100,50 +100,55 @@
  .../rules/server-parallel-nested-fetching.md       |   34 +
  .../rules/server-serialization.md                  |   38 +
  .agents/skills/web-design-guidelines/SKILL.md      |   39 +
+ .claude/agents/harden.md                           |    3 +-
+ .claude/agents/lane-00.md                          |    5 +-
+ .claude/agents/lane-a.md                           |    5 +-
+ .claude/agents/lane-b.md                           |    5 +-
+ .claude/agents/lane-c.md                           |    5 +-
+ .claude/agents/lane-d.md                           |    5 +-
+ .claude/agents/lane-e.md                           |    5 +-
+ .claude/agents/lane-f.md                           |    4 +
+ .claude/agents/reviewer.md                         |    5 +-
  .claude/skills/lane-handoff                        |    1 +
  .claude/skills/playwright-cli                      |    1 +
  .claude/skills/react-best-practices                |    1 +
  .claude/skills/web-design-guidelines               |    1 +
  .codex/config.toml                                 |    3 +
+ .github/workflows/verify.yml                       |   28 +
+ .gitignore                                         |    8 +
  .mcp.json                                          |   10 +-
  .nvmrc                                             |    1 +
+ .paradev/config.toml                               |   17 +
+ AGENTS.md                                          |   17 +-
+ README.md                                          |   10 +-
+ docs/PROJECT_REVIEW.md                             |   58 +
+ docs/WORKFLOW.md                                   |  118 +
+ docs/handoffs/workflow.md                          |  207 ++
+ docs/tasks/REVIEW.md                               |    2 +-
  eslint.config.mjs                                  |    5 +
  package-lock.json                                  | 1423 +++++++-
  package.json                                       |   19 +-
  playwright.config.ts                               |   28 +
  scripts/demo-test.mjs                              |  156 +
+ scripts/handoff.mjs                                |   56 +
+ scripts/kickoff.sh                                 |   18 +-
+ scripts/merge-task.sh                              |   45 +-
+ scripts/process.mjs                                |   40 +
+ scripts/setup-worktree.sh                          |   38 +-
+ scripts/test.mjs                                   |   30 +
+ scripts/verify.mjs                                 |   49 +
  tests/e2e/demo.spec.ts                             |  135 +
- 105 files changed, 12385 insertions(+), 31 deletions(-)
+ tests/workflow/discovery.test.mjs                  |   14 +
+ tests/workflow/handoff.test.mjs                    |   25 +
+ tests/workflow/merge.test.mjs                      |   78 +
+ tests/workflow/setup.test.mjs                      |   30 +
+ 134 files changed, 13279 insertions(+), 67 deletions(-)
 ```
 
 ## Working tree at snapshot
 ```text
-M .claude/agents/harden.md
- M .claude/agents/lane-00.md
- M .claude/agents/lane-a.md
- M .claude/agents/lane-b.md
- M .claude/agents/lane-c.md
- M .claude/agents/lane-d.md
- M .claude/agents/lane-e.md
- M .claude/agents/lane-f.md
- M .claude/agents/reviewer.md
- M .gitignore
- M AGENTS.md
- M README.md
- M docs/tasks/REVIEW.md
- M scripts/kickoff.sh
- M scripts/merge-task.sh
- M scripts/setup-worktree.sh
-?? .github/
-?? .paradev/
-?? docs/PROJECT_REVIEW.md
-?? docs/WORKFLOW.md
-?? docs/handoffs/
-?? scripts/handoff.mjs
-?? scripts/process.mjs
-?? scripts/test.mjs
-?? scripts/verify.mjs
-?? tests/workflow/
+M README.md
+ M docs/handoffs/workflow.md
 ```
 
 <!-- Agent-maintained progress below; refresh preserves this section. -->
@@ -165,6 +170,10 @@ part of this workflow task. Full worktree review: `docs/PROJECT_REVIEW.md`.
   draft/save. Only AI endpoints mocked; auth, persistence and polling are real.
 
 ## Validation
+- Fresh Paradev workspace from clean commit `d529d1a` installed 467 packages,
+  copied missing local env, and passed lint, all 13 tests and production build
+  on Node22.23.4. Evidence retained in `.artifacts/paradev-setup/verify/result.json`
+  and `.artifacts/paradev-setup/verified-terminal.json`.
 - Full `npm run verify` passed lint, all 13 tests and production build:
   `.artifacts/verify/1794023929293-747d0e/result.json`.
 - All 3 browser tests passed on disposable A+B+C source. Current skeleton
@@ -184,20 +193,22 @@ part of this workflow task. Full worktree review: `docs/PROJECT_REVIEW.md`.
 
 ## Agents and commits
 - demo_checks completed: `533ff28`, `358bce5`; cherry-picked as `3ec7352`,
-  `752db52`. Worker worktree: sibling `workflow-demo-checks`. Own temporary
-  package/lock copies, node_modules symlink and artifacts remain there for now.
+  `752db52`. Temporary worker worktree was removed after copying evidence here
+  and confirming all three committed files matched. Worker branch retained.
 - workflow_review completed read-only; fixtures/processes cleaned up.
-- Tooling committed as `166804f`; workflow scripts/docs commit follows.
+- Tooling committed as `166804f`; workflow scripts/docs committed as `d529d1a`.
 - No parent verification/server process remains running.
 
-## Remaining workflow steps
-1. Commit remaining scripts/docs/config on this branch.
-2. Create a throwaway local Paradev workspace from this branch; inspect Workspace
-   Setup output, fix if necessary, then archive only that new test workspace.
-   Project `5e1b7ab9-f88f-42be-b31c-4c793dd603ec`.
-3. Clean up only the completed demo worker's disposable worktree after retaining
-   its evidence here; both worker commits already integrated.
-4. Update this handoff with setup result and final commit state, then report.
+## Completion and next product steps
+Workflow implementation and validation are complete on this branch. Paradev
+test workspace `d89a68c4-46b4-48e9-840f-927339c8503a` passed and was archived
+successfully with no warnings. No original worktree was removed.
+
+For the next product session, read `docs/PROJECT_REVIEW.md`, inspect current Git
+state, and resume A's uncommitted lane work or cross-review B/C. Resolve the
+Ready/boxed stock contract with Sunny before changing shared semantics. The
+workflow becomes available to other lanes when these commits are integrated
+into their base; no main merge or production push has been performed here.
 
 ## Resume notes
 Use Node22: `/Users/sunnynguyen/.nvm/versions/node/v22.23.4/bin/node`.

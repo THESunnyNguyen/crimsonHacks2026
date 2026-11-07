@@ -10,6 +10,8 @@ Run `npm run seed`, then `npm run dev`. Visit `/` for the menu and `/staff` for 
 
 ## Workflow
 
+The [project review](docs/PROJECT_REVIEW.md) records the existing worktrees and
+remaining product integration work.
 See [docs/WORKFLOW.md](docs/WORKFLOW.md) for lane prompts, recoverable handoffs,
 review bases, isolated demo checks, and configured agent tools. Run
 `npm run handoff -- <lane> <base-sha>` at milestones and fill in its progress sections.
