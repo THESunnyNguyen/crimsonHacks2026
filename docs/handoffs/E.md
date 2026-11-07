@@ -1,10 +1,10 @@
 # Lane E handoff
 
-- Branch: `feat/preorder-stripe-sandbox`
-- Base commit: `e7bc8a5a89c13ac29c4b6f9e17bdb8e918407074`
-- Snapshot commit: `cfeac0bdbdb0748d986700264eeb4a68bb506b38`
-- Refreshed: 2026-11-07T06:03:45.845Z
-- Worktree: `/Users/sunnynguyen/.paradev/worktrees/crimsonHacks2026/feasible-add-online-order-a44a0adf`
+- Branch: `main`
+- Base commit: `b49c3010380157b9eed551e1b6deafa45a40cdd3`
+- Snapshot commit: `5197d2a321615bb8c31ae8634c31b8ed5f1183c5`
+- Refreshed: 2026-11-07T06:10:46.560Z
+- Worktree: `/Users/sunnynguyen/Desktop/crimsonHacks2026`
 
 ## Committed changes since base
 ```text
@@ -21,10 +21,10 @@
  components/staff/orders/content.ts    |   4 +-
  content/preorder.ts                   |  61 ++++++
  content/site.ts                       |   1 +
- docs/CONTRACTS.md                     |  37 ++++
- docs/STRIPE-DEMO.md                   | 122 ++++++++++++
+ docs/CONTRACTS.md                     |  38 ++++
+ docs/STRIPE-DEMO.md                   | 124 ++++++++++++
  docs/WORKFLOW.md                      |   8 +-
- docs/handoffs/E.md                    | 116 +++++++++++
+ docs/handoffs/E.md                    | 167 ++++++++++++++++
  lib/pickup.ts                         |  48 +++++
  lib/preorder-request.ts               |  46 +++++
  lib/preorder.test.ts                  | 351 +++++++++++++++++++++++++++++++++
@@ -37,15 +37,48 @@
  scripts/demo-test.mjs                 |   8 +-
  tests/e2e/preorder.spec.ts            | 216 ++++++++++++++++++++
  tests/fixtures/demo-clock.mjs         |  13 ++
- 29 files changed, 2154 insertions(+), 12 deletions(-)
+ 29 files changed, 2208 insertions(+), 12 deletions(-)
 ```
 
 ## Working tree at snapshot
 ```text
-M docs/handoffs/E.md
+Clean
 ```
 
 <!-- Agent-maintained progress below; refresh preserves this section. -->
+
+## Reviewed integration — 2026-11-06, 23:11 Denver
+- Sunny's explicit approval to push main supersedes the historical freeze below.
+  Integration commit: `5197d2a321615bb8c31ae8634c31b8ed5f1183c5`, created at
+  **23:09:15 America/Denver**, before the 23:30 hard cutoff. Authorized remote
+  publication target: `origin/main`. This final handoff changes documentation only.
+- Claude Opus independently returned **MERGE** for clean feature commit
+  `faebe6197468db390d84a3270fd2ac94431bc87e` against main base `b49c301`.
+  No blocking findings. The integration commit's tree exactly matches that
+  reviewed commit; no source changes followed the review.
+- Review evidence in the feature worktree: `.artifacts/release/claude-review.json`,
+  `.artifacts/verify/1794031577179-5a7ec0/result.json` (lint, 43 tests,
+  build/typecheck, assets all passed), and `.artifacts/demo/run-lSBQmr/result.json`
+  (all six browser checks passed). The reviewer made no changes or recursive workers.
+- Main merge helper ran `npm ci --no-audit --no-fund` and `npm run verify` before
+  committing. Main evidence: `.artifacts/verify/1794031727389-cd41c7/result.json`;
+  lint, 43 unit/workflow tests, build/typecheck, and assets all passed. Its report
+  records base HEAD plus the pending merge tree because checks precede the commit.
+- Main post-merge `npm run test:demo` passed all six scenarios under Node 22.23.4:
+  `.artifacts/demo/run-sIqXeV/result.json` and `tests.log`. An initial shell attempt
+  under Node 20 stopped at the documented engine guard before running any tests.
+  These checks use fixture AI/Stripe transport and real isolated JSON writes;
+  they do not replace the separate actual sandbox rehearsal documented below.
+- Non-blocking review notes: after 00:00 Saturday (November 7), tomorrow is
+  closed Sunday, so card checkout is unavailable until tomorrow is an open day; the 5/minute/IP
+  create limit can affect a shared venue network; abandoned drafts have no TTL.
+- No deployment or production payment configuration was performed. Read-only
+  Vercel inspection found the production project has **no Git link**, so pushing
+  main does not automatically update the hosted site. Temporary Stripe keys stay
+  only in the ignored feature-worktree environment; main received no payment keys.
+- The main checkout's pre-existing, unrelated `docs/CONTRACTS.md` note was backed
+  up and temporarily stashed for the clean merge, then restored unchanged and
+  unstaged. It is excluded from the feature and release commits.
 
 ## Latest authorization — 2026-11-06, 23:05 Denver
 - Sunny explicitly requested: **"push to main if it looks good enough"**, then
@@ -55,16 +88,17 @@ M docs/handoffs/E.md
   commit cutoff remains a hard limit. Production payment credentials remain out
   of scope; missing Stripe configuration leaves deployed pay-at-pickup available.
 - Synced the feature branch with `origin/main` at `b49c301`; the current story and
-  pitch updates merged cleanly. A read-only Claude cross-review is being requested.
+  pitch updates merged cleanly. The required Claude cross-review subsequently passed.
 
-## Coordinator scope sync — 2026-11-06, 22:49 America/Denver
+## Historical coordinator scope sync — superseded by later approval
 - **Lane E is excluded from tonight's feature-frozen release.** The coordinator
   is finishing the original A+B+C release and backup, not integrating this lane.
 - Keep implementation and contract extensions local to
   `feat/preorder-stripe-sandbox` for a separate decision. Earlier A+B+C release
   approval does not authorize pushing this branch, merging it into integration
   or main, configuring production payment keys, or deploying it.
-- No recursive workers. No workers were launched for this lane.
+- At this checkpoint no workers had been launched. Later, one required read-only
+  Claude cross-review ran; it launched no recursive workers.
 - Global keyboards-down cutoff: **2026-11-06 23:30 America/Denver
   (2026-11-07 06:30 UTC)**. No commits after that cutoff.
 - Snapshot `406c76d` contained the completed implementation, tests, setup notes,
@@ -72,7 +106,9 @@ M docs/handoffs/E.md
   No code changes or additional runtime checks were needed for this scope update.
 
 ## Completed behavior
-- Feature branch `feat/preorder-stripe-sandbox`, based on `e7bc8a5a89c13ac29c4b6f9e17bdb8e918407074`; no push, deployment, or merge to main.
+- Implemented on `feat/preorder-stripe-sandbox`, originally based on
+  `e7bc8a5a89c13ac29c4b6f9e17bdb8e918407074`; integrated into main after explicit
+  approval and independent cross-review. See the final integration record above.
 - Public priced-donut preorders with assorted dozen/custom quantities, pickup slots, name/phone, optional notes, and pay at pickup.
 - Atomic same-day stock checks and request deduplication; orders reach the staff board and update public stock through the existing polling.
 - Stripe sandbox hosted Checkout for tomorrow only, server-side USD totals, durable drafts, signed webhook fulfillment, and idempotent paid orders.
@@ -109,7 +145,8 @@ M docs/handoffs/E.md
 
 ## Actual Stripe sandbox rehearsal — 2026-11-06, 23:01 Denver
 - Sunny's subsequent "Ok go ahead" was used for the local sandbox rehearsal only;
-  all release-freeze restrictions remain in effect.
+  the release freeze remained in effect at that checkpoint, before the later
+  explicit approval to integrate and push main.
 - Stripe CLI 1.55.8 provisioned an isolated temporary claimable sandbox using the
   supported `sandboxes create --from-git --non-interactive` flow. It expires
   November 14, 2026. The CLI profile is ignored at `.artifacts/stripe/config.toml`;
@@ -153,15 +190,17 @@ M docs/handoffs/E.md
 - Redis storage paths implement atomic writes and shared rate limits but have not been exercised against deployed Upstash in this session. Local JSON paths are tested.
 - Cards are tomorrow-only; today uses pay at pickup. Closed Sundays; max 36 donuts. Prices are a demo subtotal without tax.
 - Cancelling a staff order does not refund a Stripe test payment. Abandoned checkout drafts remain until seed/reset and do not hold stock.
-- Cross-review and Sunny's approval are still required before integration into main.
+- Required cross-review and explicit integration/push approval are complete.
+  Deployment and production payment setup remain outside this release.
 
 ## Resume
-1. Preserve the local branch for later review. Start with `git status --short`
-   and `git log -5 --oneline` in this worktree; do not switch or merge release branches.
-2. To repeat the rehearsal, read `docs/STRIPE-DEMO.md` and use the existing isolated
-   CLI profile and `.env.local` while the sandbox is valid. Start port 3105 only if
-   free; changing it also requires updating `APP_BASE_URL` and webhook forwarding.
-3. Obtain the required Claude cross-review and address the remaining verification
-   limits as appropriate. Neither successful tests nor that review authorize release.
-4. Await a **separate explicit decision from Sunny** before any push, integration,
-   deployment, or production payment configuration. Lane E is not shipping tonight.
+1. Start with `git status --short` and `git log -5 --oneline`; preserve the unrelated
+   main-checkout contract note. Check `origin/main` before further work. No new
+   commits after 2026-11-06 23:30 America/Denver under tonight's cutoff.
+2. To repeat the local rehearsal, read `docs/STRIPE-DEMO.md` and use the feature
+   worktree's existing isolated CLI profile and ignored `.env.local` while the
+   sandbox is valid. Start port 3105 only if free; changing it requires updating
+   `APP_BASE_URL` and webhook forwarding. Never copy these keys to production.
+3. For a future hosted demo, obtain a separate deployment decision and deliberately
+   choose pay-at-pickup only or configure a suitable sandbox and signed webhook.
+   Address Redis, 3DS, refunds, and production-readiness limits before broader use.
