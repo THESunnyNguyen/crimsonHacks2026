@@ -5,7 +5,9 @@ import { LiveStock } from "@/components/public/LiveStock";
 import { Menu } from "@/components/public/Menu";
 import { Story } from "@/components/public/Story";
 import { Visit } from "@/components/public/Visit";
+import { PreorderForm } from "@/components/public/PreorderForm";
 import { getInventory, getMenu } from "@/lib/store";
+import { stripeSandboxEnabled } from "@/lib/stripe";
 
 export const dynamic = "force-dynamic";
 
@@ -19,8 +21,13 @@ export default async function Home() {
         <Menu menu={menu} />
         <Story />
         <Visit />
-        {/* Lane E mounts the hold-a-dozen pre-order here. */}
-        <section id="preorder" />
+        <section id="preorder" aria-labelledby="preorder-heading">
+          <PreorderForm
+            menu={menu}
+            stripeEnabled={stripeSandboxEnabled()}
+            initialNow={new Date().toISOString()}
+          />
+        </section>
         <Footer />
       </main>
     </LiveStock>

@@ -17,6 +17,7 @@ export const site = {
   soldOutPill: "Sold out today",
   soldOutToday: "Sold out for today. Fresh again tomorrow at 5 AM.",
   nav: [
+    { href: "#preorder", label: "Preorder" },
     { href: "#case", label: "In the case" },
     { href: "#menu", label: "Menu" },
     { href: "#story", label: "Our story" },

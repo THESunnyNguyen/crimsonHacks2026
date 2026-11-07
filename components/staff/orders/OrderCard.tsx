@@ -50,6 +50,13 @@ export function OrderCard({
         </div>
         <div className="text-right text-sm">
           <p>{copy.source[order.source]}</p>
+          {order.payment && (
+            <p className="font-bold">
+              {order.payment.method === "stripe_sandbox"
+                ? copy.sandboxPaid
+                : copy.payAtPickup}
+            </p>
+          )}
           {highlighted && <p className="font-bold">{copy.highlighted}</p>}
         </div>
       </div>
@@ -57,7 +64,8 @@ export function OrderCard({
       <ul className="mt-3 list-disc space-y-1 pl-5">
         {order.items.map((item, i) => (
           <li key={`${item.menuItemId}-${i}`}>
-            {item.qty} × {menuById.get(item.menuItemId)?.name ?? item.menuItemId}
+            {item.qty} ×{" "}
+            {menuById.get(item.menuItemId)?.name ?? item.menuItemId}
             {item.option && ` (${item.option})`}
           </li>
         ))}
