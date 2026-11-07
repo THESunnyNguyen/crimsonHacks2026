@@ -38,11 +38,11 @@ Four slides total. Monitor 2 carries the story while the laptop carries the demo
 >
 > Scan to see the public site
 >
-> [LARGE QR TO FINAL PUBLIC URL]
+> [LARGE QR TO https://fresh-donuts-deli-crimson2026.vercel.app]
 >
-> [READABLE PUBLIC URL]
+> https://fresh-donuts-deli-crimson2026.vercel.app
 
-**Visual:** the QR should dominate the available space and have a clear quiet border. Test it from the back of the room. **[NEED FROM SUNNY]** Final public HTTPS URL. Generate the actual QR only after that URL is confirmed, and test it from a separate phone. Use the public `/` route, not `/staff`, localhost, or a preview requiring login. This Markdown contains the placement specification, not a working QR.
+**Visual:** the QR should dominate the available space and have a clear quiet border. Test it from the back of the room. Confirmed public URL: **https://fresh-donuts-deli-crimson2026.vercel.app**. **[NEED FROM SUNNY]** Generate the QR for this URL and test it from a separate phone. Use the public `/` route, not `/staff`, localhost, or a preview requiring login. This Markdown contains the placement specification, not a working QR.
 
 **Speaker notes:** Say “Scan this,” then begin the public-page scroll. The phone-order workflow and specific sellout time still need family confirmation. The default wording avoids claiming the shop sells out at a measured time every day. No payment or reservation guarantee is implied by the public inventory.
 
@@ -110,6 +110,6 @@ Four slides total. Monitor 2 carries the story while the laptop carries the demo
 ## Sunny's assembly checklist
 
 - **[NEED FROM SUNNY]** Approved photo(s), permission, verified family story, and optional exact family quote.
-- **[NEED FROM SUNNY]** Final public URL, generated QR, and scan test from a separate phone.
+- **[NEED FROM SUNNY]** Generated QR for the confirmed production URL and scan test from a separate phone.
 - **[NEED FROM SUNNY]** Actual Redo-talk notes and checked evaluation numbers. Remove unresolved placeholders from the projected slides rather than reading them.
 - Check slide 3 against the integrated app and rehearse the 15s / 90s / 45s / 30s timing. Keep the slide count at four. This deliverable is slide content in Markdown, not an exported presentation.
