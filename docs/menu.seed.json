@@ -1,0 +1,16 @@
+[
+  { "id": "fritter",               "name": "Fritters",               "category": "specialty",   "stockGroup": "specialty",   "price": 3.49 },
+  { "id": "cinnamon-roll",         "name": "Cinnamon Rolls",         "category": "specialty",   "stockGroup": "specialty",   "price": 3.49 },
+  { "id": "cream-cheese-croissant","name": "Cream Cheese Croissants","category": "specialty",   "stockGroup": "specialty",   "price": 3.49 },
+  { "id": "filled",                "name": "Filled Donuts",          "category": "filled_bars", "stockGroup": "filled_bars", "price": 2.59 },
+  { "id": "buttermilk-bar",        "name": "Buttermilk Bars",        "category": "filled_bars", "stockGroup": "filled_bars", "price": 2.59 },
+  { "id": "raised-glazed",         "name": "Glazed",                 "category": "raised",      "stockGroup": "raised",      "price": 1.65 },
+  { "id": "raised-maple",          "name": "Maple",                  "category": "raised",      "stockGroup": "raised",      "price": 1.65 },
+  { "id": "raised-chocolate",      "name": "Chocolate",              "category": "raised",      "stockGroup": "raised",      "price": 1.65 },
+  { "id": "raised-sugar",          "name": "Sugar",                  "category": "raised",      "stockGroup": "raised",      "price": 1.65 },
+  { "id": "raised-blueberry",      "name": "Blueberry",              "category": "raised",      "stockGroup": "raised",      "price": 1.65 },
+  { "id": "cake-old-fashioned",    "name": "Old Fashioned",          "category": "cake",        "stockGroup": "cake",        "price": 1.65, "options": ["Chocolate glaze", "Maple"] },
+  { "id": "cake-double-chocolate", "name": "Double Chocolate Cake",  "category": "cake",        "stockGroup": "cake",        "price": 1.65 },
+  { "id": "cake-white",            "name": "White Cake",             "category": "cake",        "stockGroup": "cake",        "price": 1.65, "options": ["Vanilla", "Chocolate", "Strawberry"] },
+  { "id": "deli-sandwich",         "name": "Deli Sandwiches",        "category": "deli",        "stockGroup": null,          "price": null }
+]
