@@ -9,8 +9,8 @@ Instructions shared by every coding agent in this repo (Claude Code reads this v
 - Lanes and briefs: `docs/tasks/` (board + Paradev steps: `docs/tasks/README.md`; review: `docs/tasks/REVIEW.md`). Edit only the files your lane owns.
 - Stack: Next.js App Router + TypeScript + Tailwind on Vercel (auto-deploy from `main`). Storage via `lib/store.ts` (Upstash Redis in prod, JSON locally). AI via `lib/ai.ts`: **OpenAI API only**, no Anthropic API in the app. (Claude Code and Codex are just the coding agents.)
 - Styling: colors and fonts only via theme tokens in `app/globals.css`. Copy lives in content files.
-- How to run: TODO (e.g. `npm run dev`)
-- How to test: TODO
+- How to run: `npm install`, `npm run seed`, `npm run dev`
+- How to test: `npm test`, `npm run build`; see README for API smoke checks.
 
 ## Working rules
 - Hackathon pace: prefer small, working increments over big rewrites.

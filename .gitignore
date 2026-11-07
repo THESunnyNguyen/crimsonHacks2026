@@ -18,3 +18,9 @@ __pycache__/
 dist/
 build/
 .next/
+
+# Local runtime data
+data/*.local.json
+data/*.tmp
+*.tsbuildinfo
+.vercel/

@@ -1,0 +1,2 @@
+import { timingSafeEqual } from "node:crypto";
+export function requireStaff(req: Request): void { const expected = process.env.STAFF_PIN; const actual = req.headers.get("x-staff-pin"); if (!expected || !actual || Buffer.byteLength(actual) !== Buffer.byteLength(expected) || !timingSafeEqual(Buffer.from(actual), Buffer.from(expected))) throw new Response(JSON.stringify({ error: "Staff PIN required" }), { status: 401, headers: { "Content-Type": "application/json", "Cache-Control": "no-store" } }); }
