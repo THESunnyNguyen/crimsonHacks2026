@@ -106,3 +106,39 @@ Staff PIN gate unchanged. Dedicated Redis still missing.
 Clean tracked deployment source prepared at .artifacts/deploy/source (0f233ae);
 refresh from final HEAD before deployment. No secrets/runtime data in upload.
 Main six-edit patch rechecked identical to saved backup at21:22.
+
+##21:34 resumed monitoring — do not end merely for deployment blockers
+Sunny asked why coordinator stopped at21:27. Ending the turn was an error:
+deployment decisions block only deployment, not monitoring/post-freeze recording.
+Continue authorized work and timed monitoring through deadline; don't interpret
+silence or elapsed time as approval. No more pitch workers.
+
+- Unmocked Chromium phone-width browser run passed on local3110 at21:32:
+  real Commons image -> count remains unsaved -> staff correction -> publish ->
+  public Only3left; typed DEMO notes -> unsaved draft -> Save -> Tomorrow -> Ready.
+  Photo UI16,679ms; notes UI2,345ms; HTTP200 both; no page errors/overflow.
+  Evidence `.artifacts/live-ui/result.json` and screenshots. No AI interception.
+  This is not an actual phone/Redis test or a shop-photo accuracy benchmark.
+- Independent Terra real-photo pipeline run11.0s (slower than A's6.7–7.5s).
+  `.artifacts/live/count-real-terra.log`. Neither model reliably meets8sec;
+  no default model change made from this evidence. Manual fallback remains vital.
+- Local data reset after live UI run:20/group, one sample, available78.
+- WebKit browser executable absent. Did not install new browser/tooling.
+- Separate pitch owner branch `pitch-demo-docs-e9465335`, worktree
+  `own-lane-p-pitch-e9465335`, commit e9b98d3, three docs only. No terminal session
+  exists to message. Do not spawn one or edit its content. Review finding:
+  docs/demo-script.md:47 and:53 permit skipping repeated photos;:54 permits showing
+  seeded board instead of draft/save. Conflicts with Sunny's never-cut-golden-path
+  instruction. Preserve full->low->empty->notes->save->Ready via labeled recording
+  or manual fallback. Not integrated pending owner resolution. Actual manual label
+  is 'Publish counts'. Core app remains unmodified.
+
+## Final backup after22:30 freeze (orchestrator only)
+Confirm date and final source/runtime, seed intended LOCAL app, then reuse ignored
+one-off recorder (no repo tooling added):
+`PITCH_APP_ROOT=<integration-path> PITCH_MUTATION_APPROVED=yes PITCH_OUTPUT=.artifacts/final-backup node --import tsx .artifacts/pitch/record.mjs`
+This records fixture AI+real local writes with permanent visible fixture label.
+Transcode WebM to MP4 via ffmpeg, independently ffprobe duration and inspect frames;
+verify offline HTML video playback, record HEAD/check results in this handoff.
+Keep provisional21:23 recording until final succeeds. Restore local demo seed
+when finished. Do NOT claim fixtures establish model accuracy or hosted Redis.
