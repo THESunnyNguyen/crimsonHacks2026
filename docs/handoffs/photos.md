@@ -91,3 +91,12 @@ Composition/framing: camera at a 45-degree angle, complete sandwich centered wit
 Lighting/mood: warm morning light, soft light from upper left, shallow depth of field, natural edible textures, understated neighborhood bakery presentation.
 Constraints: generic illustrative serving suggestion, not a claim about a confirmed shop recipe. No text, logos, watermarks, people, plates, utensils, extra food or props. The website will label this image Illustration.
 ```
+
+
+## Our Story copy — user request after freeze
+- Base: `e7bc8a5a89c13ac29c4b6f9e17bdb8e918407074`. User supplied the complete replacement story, including Wilson and Brenda's names, opening in 1999, scratch-made donuts, community gratitude, and the Yelp 2023 recognition. These statements are user-provided copy, not newly researched assertions.
+- Replaced story text verbatim, with whitespace-only paragraph breaks for readability; heading is now exactly “Our Story”. Kept the kitchen photo after the introductory paragraph. Removed the superseded Tribune quote/credit and its unused content entry so the section contains the requested replacement copy.
+- Scope is only `content/site.ts`, `components/public/Story.tsx`, and this lane handoff. This is permitted copy/polish after the 22:30 freeze. No tooling/CI/contracts/process/environment changes, no production data writes, no recording/pitch work.
+- Author `npm run verify` PASS: `.artifacts/verify/1794029934952-6a3669/result.json`.
+- Local production build at this worktree's port 3120: exact paragraph-joined text equals the supplied copy; heading matches; photo loaded and remains between paragraphs; superseded quote absent; no horizontal overflow at 390px. Both mobile screenshots visually inspected. Evidence: `.artifacts/story/local-checks.json`, `local-mobile-top.png`, `local-mobile-bottom.png`. Preview stopped before independent review.
+- Independent review/deployment pending. Final reviewed/deployed source and verification evidence will be recorded here; coordinator owns any refresh to the final golden-path backup to match this subsequent production copy update.

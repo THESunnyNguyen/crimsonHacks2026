@@ -32,7 +32,7 @@ export const site = {
     alt: "An illustrative deli sandwich on a golden roll with layered fillings and crisp greens",
   },
   cakeToppings: "Peanut or coconut on any cake donut",
-  storyHeading: "Our story",
+  storyHeading: "Our Story",
   photos: {
     front: {
       src: "/img/shop/front.webp",
@@ -44,15 +44,10 @@ export const site = {
     },
   },
   storyParagraphs: [
-    "For about 25 years, Fresh Donuts & Deli has been a family shop on State Street in South Salt Lake.",
-    "It's run by a husband-and-wife team who both emigrated from Cambodia.",
+    "Hi! We're Wilson and Brenda, the husband-and-wife team behind Fresh Donuts & Deli! We opened our little donut shop in South Salt Lake back in 1999 with one simple goal: to make fresh, delicious donuts that people would love.",
+    "For over 25 years, we've been waking up before sunrise to make our donuts from scratch, using a recipe we've spent years perfecting. What started as a small family business has grown into something truly special, thanks to our amazing customers and community. We were even named one of Yelp's Top 100 Donut Shops in the country in 2023!",
+    "We're so grateful for everyone who has supported us over the years, whether you've been stopping by since day one or you're visiting for the first time. We can't wait to share a fresh donut with you!",
   ],
-  quote: {
-    before: "The Salt Lake Tribune says the shop makes doughnuts",
-    text: "the best in Salt Lake County and, some say, in Utah.",
-    credit: "The Salt Lake Tribune, Sept. 30, 2024",
-    href: "https://www.sltrib.com/artsliving/food/2024/09/30/some-say-fresh-donuts-deli-makes/",
-  },
   visitHeading: "Visit us",
   directions: "Get directions",
   callLabel: "Call",
