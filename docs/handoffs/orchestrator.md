@@ -5,7 +5,7 @@ Coordinator operates in existing integration worktree:
 Original chat cwd b578253d was fast-forwarded to6004e25 for isolated Pitch work;
 Pitch commit6ef7385 cherry-picked onto integration as b0ec956.
 Use Node22: prepend `/Users/sunnynguyen/.nvm/versions/node/v22.23.4/bin` to PATH.
-Run `date` at every check-in; shell clock is authoritative (last 21:18 MST).
+Run `date` at every check-in; shell clock is authoritative (last 21:25 MST).
 
 ## Authorization and clock
 User authorizes integration and preview only, NOT main merge or production push.
@@ -55,10 +55,19 @@ A accidentally sent email in one Wikimedia User-Agent; disclosed to Sunny, stopp
 Current handoff redacts literal address; original remains in d3c787a history.
 
 ## Local app / video
-Dev running3110 via exec session35368 (localhost and10.56.51.5:3110).
-Seeded local demo data20/group with one sample. Pitch currently has EXCLUSIVE
-local runtime write window to record; do not reset data until it finishes.
+App running3110 via production exec session43961 (localhost and10.56.51.5:3110).
+Seeded local demo data20/group with one sample. Pitch finished and RELEASED the runtime write window.
 Video explicitly labels fixture AI throughout; real local publish/order writes.
+USER STEERING21:25: separate agent owns pitch script/slides; stop our Pitch worker.
+Our duplicate pitch docs commit b0ec956 reverted. Retain ignored provisional
+recording only. ORCHESTRATOR must capture FINAL backup AFTER22:30 freeze.
+No more pitch workers or pitch-document edits.
+Current provisional .artifacts/pitch/golden-path-fixture.mp4 and .webm passed
+all8 golden-path assertions with3count and1parse fixtures, no page errors.
+Parent ffprobe verified MP4 duration80.92sec, size3,209,010bytes; worker offline
+HTML video playback metadata+seeks passed. This is PROVISIONAL, not post-freeze final.
+Runtime write window released.3110 now production next start, session43961;
+dev HMR blocked127.0.0.1, no source/config fix needed. Parent reset local demo data at21:26:20/group, one sample, available78. Keep backup labeled fixture AI.
 
 ## Workers — phase2 started early after integration passed
 A Claude workspace639ca8bb-82d9-43d3-a9fa-4cd4b354d3f6,
@@ -67,8 +76,11 @@ All A changes reviewed; dirty generated AGENTS/browser artifacts preserved in la
 Review Codex native `/root/review_bc` completed read-only B/C/A reviews (MERGE all),
 then reassigned DEPLOY worker in integration (only .vercel, .artifacts/deploy,
 docs/handoffs/deploy.md and preview external config). No app code or main/prod.
-Pitch native `/root/pitch` initially isolated b578, now integration-only owned
-P-pitch/demo-script/P handoff and .artifacts/pitch. Recording now, no AI calls.
+Pitch native `/root/pitch` INTERRUPTED and STOPPED on user request21:25.
+No further pitch worker permitted; script/slides handled separately.
+Replacement deployment worker `/root/preview_finish` completed blocked handoff;
+prior `/root/review_bc` deployment attempts hit TPM limits; do not resume.
+All workers now stopped/finished. Parent handles post-freeze recording.
 Both workers must coordinate commits with parent. No recursive workers.
 Old CLI reviewer failed auth before work; older B/C/F sessions idle/limited.
 
@@ -81,3 +93,16 @@ Async question to Sunny asks intended DB/project (no secrets in chat), pending.
 Deploy worker handles Node22 and preview-only OpenAI/PIN env via stdin; never
 copy Redis into local .env or attach unrelated production database.
 Actual preview Redis and phone acceptance outstanding. No working preview claim yet.
+
+##21:25 deployment gate
+See docs/handoffs/deploy.md. New project first preview refused by Vercel:
+reason first_deployment_production; userActionRequired:true. No deployments/URL
+or Vercel build exists. Do NOT bypass or deploy production without explicit yes.
+Async question asks wait until final gate vs authorize first deployment once
+Redis ready vs named existing dedicated project. Pending, not approved.
+Preview-only OpenAI/PIN/model env ready; Next+Node22 configured; Vercel login
+protection disabled only for this new project to permit public phone preview.
+Staff PIN gate unchanged. Dedicated Redis still missing.
+Clean tracked deployment source prepared at .artifacts/deploy/source (0f233ae);
+refresh from final HEAD before deployment. No secrets/runtime data in upload.
+Main six-edit patch rechecked identical to saved backup at21:22.
