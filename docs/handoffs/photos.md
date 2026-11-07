@@ -51,3 +51,12 @@ Clean
 - This Vercel project still needs explicit CLI deployments; it has no Git integration.
 - Previous production deployment retained for rollback: `dpl_5jRjHhSRC2rLuEMB8hgyQDLmzXpo`.
 - The follow-up commit changes only this deployment handoff; application code matches reviewed/deployed `b15c1b0`.
+
+## Coordinator sync — 22:21 MST, November 6
+- Rechecked the production alias: `dpl_6pqgmiUQecX19DfpTdrE6Mc3ptg8`, **READY**, reviewed/deployed application source `b15c1b024656f90d899b7f64de7829ac2de31ed7`. Evidence: `.artifacts/deli/production-sync.json`.
+- Main at sync is `230aab2487a7273b4a91ad39527e7c465db5ec99`; its only difference from the deployed application commit is this handoff. Later handoff-only commits also do not alter the production application.
+- Accepted coordinator constraints: feature freeze 22:30; after freeze only demo blockers, copy, and polish. Coordinator owns the final full golden-path backup matching the latest production app. This lane will not start recording/pitch work or change tooling, CI, contracts, or process files.
+- Main checkout's unrelated dirty `docs/CONTRACTS.md` remains untouched. Existing main/production authorization persists; no further approval is needed for those steps after review.
+- Pending user design request: generate a deli sandwich menu illustration matching the existing warm cream-paper photo series. Prompt prepared at `.artifacts/deli/prompt.txt`; CLI dry-run passed. No image generation API call has been made and no application files have changed for this request.
+- Image generation is waiting for the separate API-fallback confirmation already requested from the user. The built-in image tool is unavailable; [imagegen skill](/Users/sunnynguyen/.codex/skills/.system/imagegen/SKILL.md): "If the built-in tool fails or is unavailable, tell the user the CLI fallback exists and that it requires `OPENAI_API_KEY`. Proceed only if the user explicitly asks for that fallback." The project key is configured; no secret value was printed.
+- Once confirmed, keep deli integration within public assets, `content/site.ts`, and `components/public/Menu.tsx`; preserve the existing generator/validator and locked menu-copy contract. Use the existing Illustration label and Ask at the counter wording. Review and verify any application change before production, then record its exact reviewed/deployed SHA here for the coordinator's backup.
