@@ -2,9 +2,10 @@
 
 Coordinator operates in existing integration worktree:
 `/Users/sunnynguyen/.paradev/worktrees/crimsonHacks2026/orchestrator-crimson-hacks-173615f7`.
-Original chat cwd b578253d remains untouched at plan-era main descendant.
+Original chat cwd b578253d was fast-forwarded to6004e25 for isolated Pitch work;
+Pitch commit6ef7385 cherry-picked onto integration as b0ec956.
 Use Node22: prepend `/Users/sunnynguyen/.nvm/versions/node/v22.23.4/bin` to PATH.
-Run `date` at every check-in; shell clock is authoritative (last 21:12 MST).
+Run `date` at every check-in; shell clock is authoritative (last 21:18 MST).
 
 ## Authorization and clock
 User authorizes integration and preview only, NOT main merge or production push.
@@ -26,34 +27,57 @@ post-box cancellation/reopening if approved.
 3. Confirm separate final approval gate; no approval yet.
 4. Need real donut photo path/URL with known counts. Only synthetic images found.
 
-## Integration
-Base 3f0b12a; existing clean integration reused.
-Workflow 692a5a6 merged as 275d97b after own npm ci + npm run verify passed.
-Evidence `.artifacts/verify/1794024682178-a25505/result.json`.
-B 2b10be9 (inherits F 2caa94a ONCE) is currently a PENDING MERGE awaiting review.
-Own npm run verify passed all four checks including asset validation:
-`.artifacts/verify/1794024712340-2f0f17/result.json`.
-Next commit B after MERGE verdict, merge C then verify/commit, then A verify and
-cross-review, then test:demo (fixture AI only). No live accuracy claim from fixtures.
-IMPORTANT merge-task.sh refuses any branch other than main (observed exit 1).
-No tooling edit: reproduce its git merge --no-ff --no-commit, npm verification,
-commit-on-pass behavior on integration; abort own pending merge on failure.
+## Integration — 22:00 milestone met early at21:17
+Base3f0b12a; existing clean integration reused. All reviewed and integrated:
+- Workflow692a5a6 as275d97b; B2b10be9 (includes F2caa94a ONCE) asd81d026.
+- C83904e9 as6004e25; A corec9fc35c asc23f172; A cap/evald3c787a asfef73f3.
+- Pitch docs6ef7385 cherry-picked asb0ec956; A handoff258b372 merged afterward.
+Own npm run verify passed after EVERY integration merge. Latest evidence:
+`.artifacts/verify/1794025091602-37684e/result.json` (35 tests + lint/build/assets).
+Own npm run test:demo passed all3 fixture-AI browser flows on combined source:
+`.artifacts/demo/run-2SwpOO/` and after1024px `.artifacts/demo/run-iyTPCd/`.
+No live accuracy claim from fixtures. No required new feature fixes found yet.
+IMPORTANT merge-task.sh refuses branches other than main (observed exit1).
+No tooling edit: reproduced its pending merge + verify + commit-on-pass procedure.
 
-## Workers
-A Claude existing Paradev workspace 639ca8bb-82d9-43d3-a9fa-4cd4b354d3f6,
-terminal 75148cc2-db58-4ad5-a51b-d80110946e67, branch task/A-vision-confirm.
-Owns A contract files + docs/handoffs/A.md only. Hard stop 21:45.
-First feature commit c9fc35c; working on 1024px cap then handoff/real evaluation.
-Do not include dirty generated AGENTS.md or browser artifacts.
-Review Codex native child `/root/review_bc` replaces failed terminal Codex login.
-Isolated review-output-d7b5e9a8 checkout; READ ONLY B/C; no source commits.
-CLI terminal 09395be2-8954-43f1-8943-5a9aada362b8 failed auth before working, idle.
-Other old C/F terminals are usage-limited and B terminal is interrupted/idle.
-Only A and Review active. Third slot available.
+## Live evidence
+Local ignored .env copied only app variables from main, NO Redis. Main .env has
+stale model IDs: first live parse failed404 for claude-haiku-5-5. Integration-only
+.env corrected to contracted OpenAI IDs. Main file untouched. Do not log keys.
+- Typed DEMO notes via real gpt-6-luna passed assertions2491ms (<3sec).
+  `.artifacts/live/parse-result.json`. This is typed sample text, not a real caller.
+- A real licensed Commons photo evaluated with real models; group labels uncertain.
+  A documents latency17–23s astra;6.7–7.5s terra. No shop-photo benchmark.
+- Independently reran one real-photo astra evaluation:19.8s, output5/4/0/3 versus
+  tentative labels7/1/1/3; total12 correct, grouping poor. `.artifacts/live/count-real-astra.log`.
+- Need real shop full/low/empty phone photos and phone testing before accuracy claim.
+A accidentally sent email in one Wikimedia User-Agent; disclosed to Sunny, stopped.
+Current handoff redacts literal address; original remains in d3c787a history.
+
+## Local app / video
+Dev running3110 via exec session35368 (localhost and10.56.51.5:3110).
+Seeded local demo data20/group with one sample. Pitch currently has EXCLUSIVE
+local runtime write window to record; do not reset data until it finishes.
+Video explicitly labels fixture AI throughout; real local publish/order writes.
+
+## Workers — phase2 started early after integration passed
+A Claude workspace639ca8bb-82d9-43d3-a9fa-4cd4b354d3f6,
+terminal75148cc2-db58-4ad5-a51b-d80110946e67 finished/stopped at258b372.
+All A changes reviewed; dirty generated AGENTS/browser artifacts preserved in lane.
+Review Codex native `/root/review_bc` completed read-only B/C/A reviews (MERGE all),
+then reassigned DEPLOY worker in integration (only .vercel, .artifacts/deploy,
+docs/handoffs/deploy.md and preview external config). No app code or main/prod.
+Pitch native `/root/pitch` initially isolated b578, now integration-only owned
+P-pitch/demo-script/P handoff and .artifacts/pitch. Recording now, no AI calls.
+Both workers must coordinate commits with parent. No recursive workers.
+Old CLI reviewer failed auth before work; older B/C/F sessions idle/limited.
 
 ## Deploy preparation
-Vercel CLI authenticated as thesunnynguyen. No linked .vercel project found here.
-Account lists corporate-portfolio, ih-hackathon, sunny-it-solutions, glazegpt;
-do not assume glazegpt is this project or overwrite unrelated production.
-No preview created yet. Need preview-specific Redis + OpenAI env; never copy
-Redis credentials into local .env. Local JSON data and real credentials stay ignored.
+New Vercel project `fresh-donuts-deli-crimson2026` created and linked to integration.
+Vercel CLI authenticated thesunnynguyen. No production deployment authorized.
+CLI created ignored .env.local OIDC token; removed its redundant .gitignore edits.
+Vercel integration installations EMPTY. No Redis credentials available locally.
+Async question to Sunny asks intended DB/project (no secrets in chat), pending.
+Deploy worker handles Node22 and preview-only OpenAI/PIN env via stdin; never
+copy Redis into local .env or attach unrelated production database.
+Actual preview Redis and phone acceptance outstanding. No working preview claim yet.
