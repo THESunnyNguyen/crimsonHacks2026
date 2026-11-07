@@ -55,7 +55,7 @@ function launch(args, cwd, logName) {
 
 function signal(child, value) {
   try {
-    if (process.platform === "win32") child.kill(value);
+    if (process.platform === "win32" || !child.pid) child.kill(value);
     else process.kill(-child.pid, value);
   } catch (error) {
     if (error.code !== "ESRCH") throw error;
@@ -66,7 +66,9 @@ async function stop() {
   const owned = [...processes];
   for (const child of owned) signal(child, "SIGTERM");
   for (let i = 0; i < 30 && owned.some((child) => processes.has(child)); i++) await pause(100);
-  for (const child of owned) if (processes.has(child)) signal(child, "SIGKILL");
+  // The leader may have closed while a descendant ignored TERM. Its process
+  // group remains ours to reap even after launch() removes the leader.
+  for (const child of owned) signal(child, "SIGKILL");
 }
 
 for (const name of ["SIGINT", "SIGTERM"]) process.once(name, () => {
@@ -78,16 +80,19 @@ for (const name of ["SIGINT", "SIGTERM"]) process.once(name, () => {
 async function checked(args, cwd, logName, timeoutMs = 180_000) {
   const { child, done } = launch(args, cwd, logName);
   let force;
+  let timedOut = false;
   const timer = setTimeout(() => {
+    timedOut = true;
     signal(child, "SIGTERM");
-    force = setTimeout(() => { if (processes.has(child)) signal(child, "SIGKILL"); }, 3000);
+    force = setTimeout(() => signal(child, "SIGKILL"), 3000);
   }, timeoutMs);
   const code = await done;
+  if (timedOut || interrupted) signal(child, "SIGKILL");
   clearTimeout(timer);
   clearTimeout(force);
-  if (interrupted || code !== 0) {
+  if (timedOut || interrupted || code !== 0) {
     const tail = (await readFile(path.join(evidence, logName), "utf8")).split("\n").slice(-45).join("\n");
-    throw new Error(`${logName} failed (exit ${code}).\n${tail}`);
+    throw new Error(`${logName} ${timedOut ? "timed out" : "failed"} (exit ${code}).\n${tail}`);
   }
 }
 
