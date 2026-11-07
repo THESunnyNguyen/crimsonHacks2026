@@ -33,6 +33,13 @@ export type Order = {
   status: "new" | "ready" | "picked_up" | "cancelled";
   source: "staff_form" | "notes" | "web";
   createdAt: string;
+  payment?: {
+    method: "pay_at_pickup" | "stripe_sandbox";
+    status: "unpaid" | "paid";
+    amountTotal: number; // integer USD cents; demo subtotal, excludes tax
+    currency: "usd";
+    sessionId?: string;
+  };
 };
 export type CountResult = {
   groups: { groupId: StockGroupId; count: number; confidence: number }[];
