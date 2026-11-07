@@ -1,19 +1,20 @@
 # Orchestrator handoff — Crimson Hacks 2026
 
-Refreshed: 2026-11-06T22:03:19-07:00. Run `date` at every check-in.
+Refreshed: 2026-11-06T22:13:48-07:00. Run `date` at every check-in.
 
 ## Current state
 - Working directory: `/Users/sunnynguyen/.paradev/worktrees/crimsonHacks2026/orchestrator-crimson-hacks-173615f7`, branch `integration`.
 - Original chat cwd b578253d is a stale isolated pitch worktree; do NOT use it as the app source.
 - Node 22: prepend `/Users/sunnynguyen/.nvm/versions/node/v22.23.4/bin` to PATH.
-- **Main merged and pushed: `4be30e0`**, with explicit Sunny approval: "yes merge main, approved" (21:52).
+- **Main merged and pushed: `4be30e0`**, with explicit Sunny approval: "yes merge main, approved" (21:52). Separate user-authorized recolor subsequently advanced origin/main to `132f692`; local main is now fast-forwarded to match, preserving the dirty contract note byte-for-byte.
 - **Production verified:** https://fresh-donuts-deli-crimson2026.vercel.app
-- Current deployment: `dpl_Hoc1HV9ZoxbKfXVR9qbCX5zNeUDS`, immutable URL `https://fresh-donuts-deli-crimson2026-rkhjh6itz.vercel.app`, READY/production.
-- Exact uploaded source was `git archive 4be30e0`; metadata `sourceCommit` records that SHA. Automatic parent-worktree Git metadata may say integration/850c770; it is not the source archive identity.
+- Current deployment: `dpl_5jRjHhSRC2rLuEMB8hgyQDLmzXpo`, immutable URL `https://fresh-donuts-deli-crimson2026-lvvuhg332.vercel.app`, READY/production; canonical alias independently inspected at22:14. Deployed application SHA `285f5b2`; main `132f692` adds only its handoff. Previous live-AI verified deployment was `dpl_Hoc1HV9ZoxbKfXVR9qbCX5zNeUDS` (`rkhjh6itz`).
+- Previous uploaded source was `git archive 4be30e0`; current recolor was independently cross-reviewed and deployed from tracked-source archive `285f5b2` by its owning chat. See `docs/handoffs/recolor.md`.
 - Production/Preview vision model: `gpt-6.1-terra`. Parse model remains `gpt-6-luna`. No source or contract changes for this configuration correction.
 - Vercel project has **no Git auto-deploy link**. Main push was followed by explicit deployment from a clean archive. Do not assume a new push deploys automatically.
 - Account-owned Free Upstash **newDB**, US-WEST-1, was connected by the separate deployment chat. All required Production env names checked.
-- App source has not changed since reviewed A/B/C integration; later commits are documentation.
+- Recolor changes only theme tokens/public styling; contracts and app behavior are unchanged. Coordinator independently reran verify and fixture demo before merging into integration.
+- Local checks use Node22. Vercel project setting is22.x, but existing package engines `>=22` resolved BOTH previous and recolor deployments to nodejs26.x; this is not a new recolor regression. No runtime/tooling source edit made tonight.
 
 ## Remaining work and clock
 - **Continue this active orchestration task; do not end the turn merely because decisions are pending.** Sunny objected when the coordinator stopped earlier.
@@ -35,6 +36,7 @@ Refreshed: 2026-11-06T22:03:19-07:00. Run `date` at every check-in.
 - Recommended count deduction is NOT approved/implemented. Main approval was not permission to silently rewrite the contract. This does not affect the scripted tomorrow order's today stock.
 
 ## Verification evidence
+- Recolor integration recheck PASS: `.artifacts/verify/1794028345262-a7b76d/result.json` and all3 fixture demo flows `.artifacts/demo/run-iNNms6/`. Read-only diff matches the recolor owner’s7 files. Cross-review evidence in that worktree `.artifacts/recolor/claude-review.json` reports MERGE at285f5b2.
 - Independent Codex MERGE verdicts: B `2b10be9` (inherits F `2caa94a` ONCE), C `83904e9`, A `c9fc35c` and `d3c787a`; A handoff correction `258b372` also integrated.
 - Workflow `692a5a6` was integrated first. Existing merge helper refuses non-main branches, so integration used pending merge → verify → commit procedure without tooling edits. Actual main merge used the helper normally.
 - Main `npm run verify`: 35 tests + lint/build/assets passed, `/Users/sunnynguyen/Desktop/crimsonHacks2026/.artifacts/verify/1794027187124-72315f/result.json`.
@@ -46,8 +48,8 @@ Refreshed: 2026-11-06T22:03:19-07:00. Run `date` at every check-in.
 - Real Commons photo has uncertain group labels/cruller; synthetic drawings are pipeline fixtures, never model accuracy evidence. See docs/eval.md.
 
 ## Local runtime and final recording
-- Local production-mode app on **3110**, exec session **1526**, started with `VISION_MODEL=gpt-6.1-terra VISION_SECOND_MODEL=`. Uses JSON; never place Redis in local .env. No source changes require rebuilding currently.
-- Node22, existing `.next` production build matches application code of main4be30e0. Dev mode previously blocked127.0.0.1 HMR; no config edit was made. Use http://localhost:3110.
+- Local production-mode app on **3110**, restarting after verified recolor build, with `VISION_MODEL=gpt-6.1-terra VISION_SECOND_MODEL=`. Uses JSON; never place Redis in local .env.
+- Node22, rebuilt `.next` production build matches application code of main132f692/deployed285f5b2. Dev mode previously blocked127.0.0.1 HMR; no config edit was made. Use http://localhost:3110.
 - Local demo was reset:20/group, one sample,78 available. Seed again immediately before recording, local only.
 - Provisional fixture video: `.artifacts/pitch/golden-path-fixture.mp4` and `.webm`; 80.92sec/3,209,010bytes. All8 golden steps + offline playback passed. Permanent fixture-AI label. It is NOT the final post-freeze recording.
 - Final LIVE recording variant prepared (syntax checked, not run before freeze): `.artifacts/pitch/record-live.mjs`. It calls actual local AI routes (no AI interception), uses staged synthetic images with known counts, corrects counts explicitly, and labels LIVE OPENAI/STAGED IMAGES/HUMAN CONFIRMATION. It is not an accuracy benchmark.

@@ -16,8 +16,8 @@ const groupShapes: Record<StockGroupId, Shape> = {
 };
 
 const levelStyle: Record<Level, string> = {
-  plenty: "bg-cocoa/10 text-cocoa",
-  low: "bg-frosting text-cocoa",
+  plenty: "bg-frosting text-cocoa",
+  low: "bg-accent-soft text-accent",
   sold_out: "bg-cocoa text-cream",
 };
 
@@ -46,7 +46,7 @@ function GroupCard({ group }: { group: Inventory["groups"][number] }) {
   }, [group.available]);
   return (
     <li
-      className={`space-y-2 rounded-theme bg-cocoa/5 p-3 transition duration-700 motion-reduce:transition-none ${
+      className={`space-y-2 rounded-theme border border-cocoa/15 bg-paper p-3 transition duration-700 motion-reduce:transition-none ${
         flash ? "scale-[1.03] ring-4 ring-frosting" : ""
       }`}
     >
@@ -70,7 +70,7 @@ export function CaseNow() {
   const now = useNow();
   return (
     <section id="case" className="scroll-mt-6 space-y-4">
-      <h2 className="font-display text-3xl sm:text-4xl">{site.caseHeading}</h2>
+      <h2 className="font-display text-3xl text-accent sm:text-4xl">{site.caseHeading}</h2>
       <p className="text-sm text-cocoa/80">{site.caseNote}</p>
       {inventory.shopSoldOut && (
         <p className="rounded-theme bg-cocoa p-4 font-display text-xl text-cream">

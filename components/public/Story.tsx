@@ -3,11 +3,11 @@ import { site } from "@/content/site";
 export function Story() {
   return (
     <section id="story" className="scroll-mt-6 space-y-4">
-      <h2 className="font-display text-3xl sm:text-4xl">{site.storyHeading}</h2>
+      <h2 className="font-display text-3xl text-accent sm:text-4xl">{site.storyHeading}</h2>
       {site.storyParagraphs.map((paragraph) => (
         <p key={paragraph}>{paragraph}</p>
       ))}
-      <figure className="space-y-2 rounded-theme border-l-4 border-frosting bg-cocoa/5 p-4">
+      <figure className="space-y-2 rounded-theme border-l-4 border-accent bg-frosting p-4">
         <blockquote className="font-display text-2xl leading-snug">
           {site.quote.before} {site.quote.text}
         </blockquote>

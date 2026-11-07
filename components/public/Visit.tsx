@@ -3,7 +3,7 @@ import { site } from "@/content/site";
 export function Visit() {
   return (
     <section id="visit" className="scroll-mt-6 space-y-4">
-      <h2 className="font-display text-3xl sm:text-4xl">{site.visitHeading}</h2>
+      <h2 className="font-display text-3xl text-accent sm:text-4xl">{site.visitHeading}</h2>
       <address className="space-y-1 not-italic">
         <p className="font-bold">{site.name}</p>
         <p>{site.address}</p>
@@ -12,7 +12,7 @@ export function Visit() {
       <div className="flex flex-wrap gap-3">
         <a
           href={site.phoneHref}
-          className="rounded-full bg-cocoa px-5 py-3 font-bold text-cream"
+          className="rounded-full bg-accent px-5 py-3 font-bold text-cream hover:bg-cocoa"
         >
           {site.callLabel} {site.phone}
         </a>

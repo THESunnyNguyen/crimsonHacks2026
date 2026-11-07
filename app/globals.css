@@ -6,9 +6,13 @@
 }
 
 @theme {
-  --color-cream: #fff6e9;
-  --color-cocoa: #4a2c1d;
-  --color-frosting: #f7a1c4;
+  --color-cream: #fff9ef;
+  /* Keep the shared token names so the staff app inherits the navy/blue palette. */
+  --color-cocoa: #123458;
+  --color-frosting: #dce9f5;
+  --color-accent: #b52d35;
+  --color-accent-soft: #fce6e3;
+  --color-paper: #ffffff;
   --font-display: var(--font-shrikhand), Georgia, serif;
   --font-body: var(--font-nunito), system-ui, sans-serif;
 }
