@@ -1,6 +1,6 @@
 # Deployment handoff — November 6, 2026
 
-Last checked: **21:24 MST**. Integration source: `0f233aed25cc5e5d53cbf63cad4f1f40bb3b52bb`.
+Last checked: **21:44 MST**. Integration source: `0f233aed25cc5e5d53cbf63cad4f1f40bb3b52bb`.
 
 ## Status: blocked before build
 
@@ -38,20 +38,33 @@ project that already supports Preview. Do not use an unrelated project.
 - Did not edit app/source/contracts/tooling/CI/skills, mutate port 3110 runtime
   data, provision a database, accept service terms, or make additional AI calls.
 
-## Redis and phone acceptance remain unresolved
+## Redis ready; hosted and phone acceptance remain unresolved
 
-The intended dedicated Redis database has not been identified. These variables
-are absent and must be configured in the intended Vercel environment before a
-working hosted inventory/order flow can be claimed:
+At 21:42 the coordinator provisioned a dedicated free temporary Upstash database
+through the officially documented `POST https://upstash.com/start-redis` endpoint.
+No signup, billing details, personal identifying headers, or paid resources.
+The response contains credentials and a claim link, saved **privately** at
+`/tmp/crimson-upstash-bootstrap-secret.md` (mode 0600), never in local `.env` or Git.
+The database expires **November 10, 2026** unless claimed into an Upstash account;
+do not present it as permanent production storage before claiming/replacing it.
+Source: https://upstash.com/docs/redis/overall/getstarted
 
-- `UPSTASH_REDIS_REST_URL`
-- `UPSTASH_REDIS_REST_TOKEN`
+`UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` are now set as sensitive
+Preview-only Vercel variables. All seven required Preview env names/targets were
+independently checked. No Production variables or deployment have been created.
 
-Do not put Redis credentials in local `.env`, attach another project's database,
-or ask for secret values in chat. `lib/store.ts` deliberately throws on Vercel
-without Redis. No hosted HTTP, staff PIN, persistence, or phone acceptance checks
-have run because there is no deployment. Prior integration verification remains
-the parent's local evidence, not a Vercel build result.
+Real database PING passed. Actual `lib/store.ts` paths passed against this new
+isolated database: seed sample, Lua count update/low level, order status update
+and hold release/restoration, sold-out override on/off. Demo data is restored to
+20 per group and one sample (78 available). Credentials were passed only to the
+scoped child verification process; the existing local app remains on JSON.
+Evidence: `.artifacts/deploy/redis-readiness.json`, `redis-app-check.json`.
+
+No hosted HTTP or actual-phone checks have run because Vercel still requires
+explicit approval for the new project's first Production deployment. An existing
+dedicated project can be selected instead. On first-Production approval, configure
+its Production env deliberately before deploying; Preview env does not cover it.
+Main merge authorization remains a separate final gate.
 
 ## Evidence (ignored)
 

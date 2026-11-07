@@ -149,3 +149,14 @@ existing three-worker policy. `git diff --check` passed. Main originals and save
 patch remain byte-identical. CONTRACTS.md unchanged: its rate/retry text and
 Ready semantics still need Sunny approval. Do not block reversible non-contract
 reconciliation on the earlier unnecessarily broad approval question.
+
+##21:44 actual Redis advanced without a paid dependency
+Dedicated free temporary Upstash created, PING and actual lib/store.ts Redis
+paths passed. All seven Preview env names/targets checked. See updated deploy.md.
+Expires November10 unless claimed. Private bootstrap credentials/claim link only
+in /tmp/crimson-upstash-bootstrap-secret.md, mode0600; never local .env or Git.
+No production deployment/env/main change. Only deployment gate now is explicit
+first-Production yes (or named appropriate existing project).
+Current Ready behavior reproduced via local sample: count20 held2 available18
+-> Ready count20 held0 available20; reverted sample toNew. Evidence
+.artifacts/live/ready-accounting-current.json. Stock decision still pending.
