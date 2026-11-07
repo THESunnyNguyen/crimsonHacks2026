@@ -183,3 +183,42 @@ first-Production yes (or named appropriate existing project).
 Current Ready behavior reproduced via local sample: count20 held2 available18
 -> Ready count20 held0 available20; reverted sample toNew. Evidence
 .artifacts/live/ready-accounting-current.json. Stock decision still pending.
+
+##21:58 approved main pushed; production vision correction in flight
+`main` merged via existing merge-task.sh as4be30e0 and pushed to origin/main.
+Main verify passed (35 tests, lint/build/assets):
+main/.artifacts/verify/1794027187124-72315f/result.json.
+Main test:demo passed all3: main/.artifacts/demo/run-Bjold1/.
+Main's original six edits saved in stash c1789146fe0daeef5945869f81ec14bd2864a2c7
+and /tmp/crimson-main-doc-edits-premerge-20261106.patch. Only original unapproved
+CONTRACTS note restored dirty on main; five other edits reconciled in commits.
+Integration fast-forwarded to main4be30e0. App code still equals reviewed bd13056.
+Vercel project has no Git link: main push cannot auto-deploy. Explicit clean
+archive of main4be30e0 deployed READY as nsvjfsyet/dpl_7fRetMsmWPzZhqnp89qEgo58TNF1.
+Custom sourceCommit metadata records main4be30e0 (automatic parent-worktree Git
+metadata may show integration850c770; upload was git archive4be30e0 exactly).
+Independent production real-image call hit application25s timeout/HTTP504;
+public pages/inventory200 and staff unauth401/auth200 passed. Evidence preserved
+in .artifacts/production/astra-timeout.json.
+Demo-blocking configuration adjustment: VISION_MODEL set to gpt-6.1-terra for
+Production+Preview, based on prior6.7–11sec real-image evidence. No source or
+CONTRACTS changes. Same main4be30e0 archive redeploy running (exec82629); result
+.artifacts/deploy/main-terra-deployment-start.json. Await READY then rerun
+.artifacts/production/check.mjs with PRODUCTION_CHECK_URL=<new immutable URL>.
+Phone acceptance async question pending. Final recording still AFTER22:30.
+
+##21:59 production verification passed
+Final current deployment dpl_Hoc1HV9ZoxbKfXVR9qbCX5zNeUDS /
+https://fresh-donuts-deli-crimson2026-rkhjh6itz.vercel.app is READY; canonical
+https://fresh-donuts-deli-crimson2026.vercel.app points there. Source archive
+main4be30e0; VISION_MODEL=gpt-6.1-terra, PARSE_MODEL unchanged.
+Independent real production photo HTTP200 in9,741ms, total12 with uncertain
+group split and low confidence highlights. Typed DEMO notes HTTP200 in1,763ms
+with Maria/07:30/12glazed/2fritters verified. These two API calls were unsaved;
+no production inventory/orders were mutated by parent verification.
+Public/staff/inventory200; orders401 without PIN/200 with PIN. Chromium390px
+public/staff browser check passed, no page errors/overflow. Actual phone pending.
+Evidence: .artifacts/production/result.json and phone-width screenshots.
+Vision still above8sec target, but25sec timeout resolved in this run. Do not
+claim benchmark accuracy or reliably under8sec. Earlier Astra504 preserved.
+Final backup remains AFTER22:30 freeze; do not end monitoring because main shipped.

@@ -1,8 +1,14 @@
 # Deployment handoff — November 6, 2026
 
-## Superseding status — 21:52 MST
+## Superseding status — 21:59 MST
 Production is LIVE after Sunny explicitly approved in the separate deployment
-chat: "terms accepted, deploy production." Account-owned Free Upstash newDB in
+chat: "terms accepted, deploy production."
+Main was separately approved, merged/pushed as4be30e0, then explicitly deployed.
+Current production is rkhjh6itz / dpl_Hoc1HV9ZoxbKfXVR9qbCX5zNeUDS, READY.
+VISION_MODEL is now gpt-6.1-terra: Astra hit25sec/504 in production; Terra passed
+real photo in9.741sec. Live notes passed1.763sec. No source/contract change.
+Parent production evidence: .artifacts/production/result.json. Actual phone
+still pending; phone-width Chromium passed. The paragraphs below document history. Account-owned Free Upstash newDB in
 US-WEST-1 supersedes the temporary scratch database described below.
 Live: https://fresh-donuts-deli-crimson2026.vercel.app
 Deployment source bd13056; application code equals current integration. The other
