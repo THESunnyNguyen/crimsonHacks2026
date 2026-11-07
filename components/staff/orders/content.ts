@@ -1,5 +1,7 @@
 export const copy = {
-  title: "Phone orders",
+  title: "Pickup orders",
+  sandboxPaid: "Test payment · paid",
+  payAtPickup: "Pay at pickup",
   hint: "New orders are held from the case.",
   today: "Today",
   tomorrow: "Tomorrow",

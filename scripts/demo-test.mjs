@@ -32,6 +32,8 @@ Object.assign(env, {
   UPSTASH_REDIS_REST_URL: "",
   UPSTASH_REDIS_REST_TOKEN: "",
   VERCEL: "",
+  STRIPE_SECRET_KEY: "sk_test_fixture_browser_only",
+  STRIPE_WEBHOOK_SECRET: "whsec_fixture_browser_only",
 });
 
 function launch(args, cwd, logName) {
@@ -127,6 +129,8 @@ try {
   await checked([path.join(modules, "next/dist/bin/next"), "build"], app, "build.log");
   const port = await freePort();
   const baseURL = `http://127.0.0.1:${port}`;
+  env.APP_BASE_URL = baseURL;
+  env.NODE_OPTIONS = `--import=${path.join(root, "tests/fixtures/demo-clock.mjs")}`;
   const { child } = launch([path.join(modules, "next/dist/bin/next"), "start", "--hostname", "127.0.0.1", "--port", String(port)], app, "server.log");
   let ready = false;
   for (let i = 0; i < 100; i++) {
@@ -139,10 +143,10 @@ try {
   }
   if (!ready) throw new Error("Disposable server did not become ready; see server.log");
   Object.assign(env, { DONUT_DEMO_URL: baseURL, DONUT_DEMO_PIN: env.STAFF_PIN, DONUT_DEMO_EVIDENCE: evidence });
-  console.log("Running 3 browser acceptance checks with fixture AI and real local writes…");
+  console.log("Running browser acceptance checks with fixture AI/payments and real local order writes…");
   await checked([path.join(modules, "@playwright/test/cli.js"), "test", "--config", path.join(root, "playwright.config.ts")], root, "tests.log", 150_000);
   result.passed = true;
-  console.log("PASS: photo confirmation, sold-out publishing, and call-notes order saving.");
+  console.log("PASS: inventory, call notes, public preorders, and checkout UI. Stripe transport is a fixture; no external payment was made.");
 } catch (error) {
   result.error = error.message;
   console.error(error.message);
