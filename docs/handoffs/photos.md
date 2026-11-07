@@ -57,6 +57,26 @@ Clean
 - Main at sync is `230aab2487a7273b4a91ad39527e7c465db5ec99`; its only difference from the deployed application commit is this handoff. Later handoff-only commits also do not alter the production application.
 - Accepted coordinator constraints: feature freeze 22:30; after freeze only demo blockers, copy, and polish. Coordinator owns the final full golden-path backup matching the latest production app. This lane will not start recording/pitch work or change tooling, CI, contracts, or process files.
 - Main checkout's unrelated dirty `docs/CONTRACTS.md` remains untouched. Existing main/production authorization persists; no further approval is needed for those steps after review.
-- Pending user design request: generate a deli sandwich menu illustration matching the existing warm cream-paper photo series. Prompt prepared at `.artifacts/deli/prompt.txt`; CLI dry-run passed. No image generation API call has been made and no application files have changed for this request.
-- Image generation is waiting for the separate API-fallback confirmation already requested from the user. The built-in image tool is unavailable; [imagegen skill](/Users/sunnynguyen/.codex/skills/.system/imagegen/SKILL.md): "If the built-in tool fails or is unavailable, tell the user the CLI fallback exists and that it requires `OPENAI_API_KEY`. Proceed only if the user explicitly asks for that fallback." The project key is configured; no secret value was printed.
+- At the 22:21 sync, the user design request was pending: generate a deli sandwich menu illustration matching the existing warm cream-paper photo series. Prompt prepared at `.artifacts/deli/prompt.txt`; CLI dry-run passed. No image generation API call has been made and no application files have changed for this request.
+- At the 22:21 sync, image generation was waiting for the separate API-fallback confirmation already requested from the user; the subsequent explicit “proceed to add sandwich image” approved it. The built-in image tool is unavailable; [imagegen skill](/Users/sunnynguyen/.codex/skills/.system/imagegen/SKILL.md): "If the built-in tool fails or is unavailable, tell the user the CLI fallback exists and that it requires `OPENAI_API_KEY`. Proceed only if the user explicitly asks for that fallback." The project key is configured; no secret value was printed.
 - Once confirmed, keep deli integration within public assets, `content/site.ts`, and `components/public/Menu.tsx`; preserve the existing generator/validator and locked menu-copy contract. Use the existing Illustration label and Ask at the counter wording. Review and verify any application change before production, then record its exact reviewed/deployed SHA here for the coordinator's backup.
+
+
+## Deli sandwich polish — approved and implemented
+- Base: `b421fca8bc45f59f6c5ae7dcfe37b462efd0a4ab`. User explicitly confirmed proceeding with the OpenAI API fallback after the fallback confirmation request.
+- Generated with the unmodified bundled imagegen CLI, `gpt-image-2`, one image, 1024×1024, medium quality. No built-in image tool was available. Original saved privately at `.artifacts/deli/deli-sandwich-original.png`; shipped asset `public/img/menu/deli-sandwich.webp`, 1024×1024, 120242 bytes, successfully decoded and visually inspected. One successful generation; actual billed cost unavailable.
+- Added only a public presentation reference in `content/site.ts` and `components/public/Menu.tsx`. Kept `content/menu-copy.json`, generator/validator scripts, tooling, CI, contracts, environment files, and production data unchanged. The existing Illustration badge and Ask at the counter copy remain.
+- Author `npm run verify` PASS: `.artifacts/verify/1794029155034-f448b7/result.json`. Asset dimensions/format/size/decode checked separately after generation.
+- Local production build on this worktree's port 3120: image loaded, illustration label present, counter pricing retained, and 390px mobile layout has no horizontal overflow. Mobile screenshot visually inspected. Evidence: `.artifacts/deli/local-checks.json`, `local-mobile.png`. Local server stopped before independent review.
+- Independent Claude review and required demo checks pending before the authorized production update. Final reviewed/deployed source SHA and live checks will be recorded here for the coordinator's freeze backup.
+
+Final generation prompt (OpenAI API fallback):
+```text
+Use case: product-mockup
+Asset type: square deli sandwich menu illustration, matching an existing neighborhood donut-shop menu photo series.
+Primary request: Photorealistic close-up of one appetizing deli sandwich on a lightly golden sandwich roll, cut diagonally into two neatly arranged halves, with modest layered deli fillings and crisp greens visible.
+Scene/backdrop: cream-colored bakery paper liner on a matte beige counter; simple warm background.
+Composition/framing: camera at a 45-degree angle, complete sandwich centered with generous breathing room; clear silhouette that reads at small menu-card size. Preserve the complete sandwich without cropping.
+Lighting/mood: warm morning light, soft light from upper left, shallow depth of field, natural edible textures, understated neighborhood bakery presentation.
+Constraints: generic illustrative serving suggestion, not a claim about a confirmed shop recipe. No text, logos, watermarks, people, plates, utensils, extra food or props. The website will label this image Illustration.
+```
