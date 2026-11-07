@@ -27,6 +27,10 @@ export const site = {
   menuHeading: "Menu",
   menuNote: "Prices are each. Ask at the counter about deli sandwiches.",
   askAtCounter: "Ask at the counter",
+  deliSandwichImage: {
+    src: "/img/menu/deli-sandwich.webp",
+    alt: "An illustrative deli sandwich on a golden roll with layered fillings and crisp greens",
+  },
   cakeToppings: "Peanut or coconut on any cake donut",
   storyHeading: "Our story",
   photos: {

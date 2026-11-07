@@ -49,14 +49,17 @@ export function Menu({ menu }: { menu: MenuItem[] }) {
             <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3">
               {items.map((item) => {
                 const copy = menuCopy[item.id];
+                const image = item.id === "deli-sandwich"
+                  ? site.deliSandwichImage
+                  : { src: copy?.image, alt: copy?.imageAlt ?? item.name };
                 return (
                   <li
                     key={item.id}
                     className="flex flex-col gap-2 rounded-theme border border-cocoa/15 bg-paper p-3"
                   >
                     <Picture
-                      src={copy?.image}
-                      alt={copy?.imageAlt ?? item.name}
+                      src={image.src}
+                      alt={image.alt}
                       shape={shapeFor(item)}
                     />
                     <div className="flex items-baseline justify-between gap-2">
