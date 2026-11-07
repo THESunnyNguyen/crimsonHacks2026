@@ -8,7 +8,8 @@ Sunny requested implementation of working preorders and Stripe sandbox checkout
 on a separate branch, to push later. This extension owns the E files plus
 `lib/preorder*`, `lib/pickup.ts`, `lib/stripe.ts`, the necessary storage/type
 additions, checkout/webhook/return routes, preorder copy, the staff payment label,
-Stripe dependency/env names, and related tests/docs. It is not integrated into main.
+Stripe dependency/env names, and related tests/docs. Sunny subsequently authorized
+integration into main after cross-review and passing checks, before the 23:30 cutoff.
 
 - Public orders: priced donuts only, 1–36 total, required name/phone, today or
   tomorrow, Mon–Sat 05:00–16:45 in 15-minute slots, at least 15 minutes ahead.

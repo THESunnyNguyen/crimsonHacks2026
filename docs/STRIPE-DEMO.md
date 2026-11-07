@@ -1,7 +1,8 @@
 # Preorders and Stripe sandbox demo
 
-Branch: `feat/preorder-stripe-sandbox`. Keep local until ready for cross-review
-and explicit approval to integrate/push. No changes to production configuration.
+Branch: `feat/preorder-stripe-sandbox`. Sunny authorized integration and a main push
+on November 6 at 23:05 Denver, subject to cross-review and passing checks, with a
+hard final-commit cutoff of 23:30. No changes to production payment configuration.
 
 ## Start with pay at pickup
 
@@ -110,8 +111,9 @@ npm run dev -- --hostname 127.0.0.1 --port 3105
 npm exec --yes --package=@stripe/cli -- stripe --config .artifacts/stripe/config.toml listen --events checkout.session.completed,checkout.session.async_payment_succeeded --forward-to http://127.0.0.1:3105/api/webhooks/stripe
 ```
 
-The release freeze still applies: this local rehearsal does not authorize a push,
-merge, deployment, or production payment configuration.
+The sandbox rehearsal itself does not authorize release or production payment
+configuration. Sunny's later conditional integration approval is recorded in
+`docs/handoffs/E.md`; the 23:30 final-commit cutoff still applies.
 
 ## References
 
