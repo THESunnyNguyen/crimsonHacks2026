@@ -2,6 +2,8 @@
 **Tool:** Claude Code · Opus 5.5 · effort high · agent `lane-00`
 **Read first:** `AGENTS.md`, `docs/CONTRACTS.md`, `docs/PLAN.md`, `docs/DEMO.md`.
 
+> **Rate limits:** `lib/ai.ts` retries 429s with backoff. `gpt-6-astra` has a 1.35M tokens/day cap shared by all dev testing, so keep images ≤1024px and don't loop the eval needlessly.
+
 ## Goal
 A deployed app where **every route and page exists with the real shapes** but simple insides, so lanes A/B/C only fill in their own files. Don't build features; stub them.
 

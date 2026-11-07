@@ -1,0 +1,19 @@
+{
+  "photos": [
+    {
+      "file": "1-full.jpg",
+      "label": "#1 full box",
+      "counts": { "raised": 0, "cake": 0, "specialty": 0, "filled_bars": 0 }
+    },
+    {
+      "file": "2-few.jpg",
+      "label": "#2 a few left",
+      "counts": { "raised": 0, "cake": 0, "specialty": 0, "filled_bars": 0 }
+    },
+    {
+      "file": "3-empty.jpg",
+      "label": "#3 empty box",
+      "counts": { "raised": 0, "cake": 0, "specialty": 0, "filled_bars": 0 }
+    }
+  ]
+}

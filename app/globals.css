@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+/* Theme tokens: the only place colors, fonts and radii are defined. */
+:root {
+  --radius: 1.25rem;
+}
+
+@theme {
+  --color-cream: #fff6e9;
+  --color-cocoa: #4a2c1d;
+  --color-frosting: #f7a1c4;
+  --font-display: var(--font-shrikhand), Georgia, serif;
+  --font-body: var(--font-nunito), system-ui, sans-serif;
+}
+
+@theme inline {
+  --radius-theme: var(--radius);
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-cocoa);
+  font-family: var(--font-body);
+}

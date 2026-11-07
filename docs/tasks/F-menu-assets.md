@@ -3,6 +3,8 @@
 **Read first:** `AGENTS.md`, `docs/CONTRACTS.md` (MenuCopy, ownership), `docs/menu.seed.json`, `docs/SHOP.md`.
 **Owns:** `scripts/gen-menu-assets.ts`, `content/menu-copy.json`, `public/img/menu/*`, `public/img/groups/*`.
 
+> **Rate limits:** `lib/ai.ts` retries 429s with backoff. `gpt-6-astra` has a 1.35M tokens/day cap shared by all dev testing, so keep images ≤1024px and don't loop the eval needlessly.
+
 ## Do
 1. `scripts/gen-menu-assets.ts` (`npm run gen:assets`, using the `openai` SDK and `OPENAI_API_KEY`):
    - **Copy:** one call to `OPENAI_TEXT_MODEL` returns JSON descriptions for every menu item, plus the 4 stock groups. Warm, specific, ≤ 18 words, no invented history or awards. Validate with zod.

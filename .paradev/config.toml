@@ -1,0 +1,17 @@
+[install]
+run = "npm ci --no-audit --no-fund"
+
+[setup]
+run = "./scripts/setup-worktree.sh --env-only"
+
+[terminals.dev]
+run = "npm run dev"
+default = true
+
+[terminals.verify]
+run = "npm run verify"
+
+[ports.web]
+default = 3000
+label = "Donut shop"
+preview = true

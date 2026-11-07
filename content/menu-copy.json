@@ -1,0 +1,92 @@
+{
+  "fritter": {
+    "description": "A golden-brown fritter with craggy fried edges and a thin, shiny glaze tucked into every knobbly nook.",
+    "image": "/img/menu/fritter.webp",
+    "imageAlt": "A glazed fritter with golden, craggy edges"
+  },
+  "cinnamon-roll": {
+    "description": "A cozy cinnamon spiral wrapped in a bakery roll and finished with a delicate glaze.",
+    "image": "/img/menu/cinnamon-roll.webp",
+    "imageAlt": "A glazed cinnamon roll with a dark cinnamon spiral"
+  },
+  "cream-cheese-croissant": {
+    "description": "Flaky golden layers curve around a pale cream cheese center in this inviting crescent-shaped pastry.",
+    "image": "/img/menu/cream-cheese-croissant.webp",
+    "imageAlt": "A flaky golden croissant with a cream cheese center"
+  },
+  "filled": {
+    "description": "A plump, lightly sugared donut with a filled center and a sweet dusting in every bite.",
+    "image": "/img/menu/filled.webp",
+    "imageAlt": "A round sugar-dusted filled donut without a hole"
+  },
+  "buttermilk-bar": {
+    "description": "A glazed buttermilk bar with a beautifully cracked center ridge and golden edges worth lingering over.",
+    "image": "/img/menu/buttermilk-bar.webp",
+    "imageAlt": "A rectangular glazed buttermilk bar with a cracked center"
+  },
+  "raised-glazed": {
+    "description": "A light, puffy golden ring wrapped in a thin sugar glaze for a simple, sweet treat.",
+    "image": "/img/menu/raised-glazed.webp",
+    "imageAlt": "A puffy ring donut with translucent sugar glaze"
+  },
+  "raised-maple": {
+    "description": "A light, puffy golden donut topped with smooth maple icing—a sweet invitation to take a break.",
+    "image": "/img/menu/raised-maple.webp",
+    "imageAlt": "A puffy ring donut topped with tan maple icing"
+  },
+  "raised-chocolate": {
+    "description": "Glossy dark chocolate icing crowns a light, puffy golden ring for a delightful chocolate-topped bite.",
+    "image": "/img/menu/raised-chocolate.webp",
+    "imageAlt": "A puffy ring donut topped with dark chocolate icing"
+  },
+  "raised-sugar": {
+    "description": "A light, puffy golden ring rolled in fine white sugar for a delicate, sweet finish.",
+    "image": "/img/menu/raised-sugar.webp",
+    "imageAlt": "A golden raised ring donut coated in fine sugar"
+  },
+  "raised-blueberry": {
+    "description": "A light, puffy golden ring finished with a softly purple blueberry glaze for a sweet little escape.",
+    "image": "/img/menu/raised-blueberry.webp",
+    "imageAlt": "A puffy ring donut topped with blueberry-purple glaze"
+  },
+  "cake-old-fashioned": {
+    "description": "Dense cake rings with deeply cracked edges, finished with your choice of chocolate glaze or maple icing.",
+    "image": "/img/menu/cake-old-fashioned.webp",
+    "imageAlt": "An old-fashioned ring donut with cracked edges and maple icing"
+  },
+  "cake-double-chocolate": {
+    "description": "Dark chocolate cake crumb meets glossy chocolate frosting in a dense ring made for chocolate cravings.",
+    "image": "/img/menu/cake-double-chocolate.webp",
+    "imageAlt": "A dark chocolate cake ring donut with chocolate frosting"
+  },
+  "cake-white": {
+    "description": "Pale golden cake donuts with a dense crumb and your choice of vanilla, chocolate, or strawberry frosting.",
+    "image": "/img/menu/cake-white.webp",
+    "imageAlt": "A golden white cake ring donut with smooth vanilla frosting"
+  },
+  "deli-sandwich": {
+    "description": "Ready for something savory? Ask at the counter about our deli sandwiches.",
+    "image": "",
+    "imageAlt": ""
+  },
+  "raised": {
+    "description": "Light, puffy rings in glaze, maple, chocolate, sugar, or blueberry.",
+    "image": "/img/groups/raised.webp",
+    "imageAlt": "Three puffy raised donuts with glazed, maple, and chocolate tops"
+  },
+  "cake": {
+    "description": "Enjoy dense cake rings, from craggy old-fashioned to double chocolate and vanilla-frosted white cake.",
+    "image": "/img/groups/cake.webp",
+    "imageAlt": "Old-fashioned, double chocolate, and vanilla-frosted cake donuts"
+  },
+  "specialty": {
+    "description": "Find your sweet moment with a craggy glazed fritter, spiral cinnamon roll, or flaky cream cheese croissant.",
+    "image": "/img/groups/specialty.webp",
+    "imageAlt": "A glazed fritter, spiral cinnamon roll, and cream cheese croissant"
+  },
+  "filled_bars": {
+    "description": "Choose a plump, sugar-dusted filled donut or a rectangular glazed buttermilk bar with its signature cracked ridge.",
+    "image": "/img/groups/filled_bars.webp",
+    "imageAlt": "A round sugar-dusted filled donut beside a rectangular glazed buttermilk bar"
+  }
+}
