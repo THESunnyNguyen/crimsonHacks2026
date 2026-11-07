@@ -1,10 +1,41 @@
 #!/usr/bin/env bash
-# Merge a reviewed lane branch into main and prove the build passes. Usage: ./scripts/merge-task.sh <branch>
+# Run in the clean main checkout, after cross-review. Never pushes or deploys.
 set -euo pipefail
-branch="${1:?usage: merge-task.sh <branch>}"
+branch="${1:?usage: merge-task.sh <reviewed-branch-or-sha>}"
 cd "$(git rev-parse --show-toplevel)"
-git checkout main && git pull --ff-only 2>/dev/null || true
-git merge --no-ff "$branch" -m "Merge $branch"
-[ -f package.json ] && npm install --silent && npm run build
-echo "✅ merged $branch. Now: git push → check the production URL → run that lane's DEMO.md steps."
-echo "   Broken? git revert -m 1 HEAD && git push"
+if [ "$(git branch --show-current)" != main ]; then
+  echo "Run this command from the main worktree. No branch was changed." >&2
+  exit 1
+fi
+for state in MERGE_HEAD CHERRY_PICK_HEAD REVERT_HEAD rebase-merge rebase-apply; do
+  if [ -e "$(git rev-parse --git-path "$state")" ]; then
+    echo "Finish the existing Git operation before merging; it was left untouched." >&2
+    exit 1
+  fi
+done
+if [ -n "$(git status --porcelain)" ]; then
+  echo "Main must be clean before merging; preserve or commit existing changes first." >&2
+  exit 1
+fi
+target="$(git rev-parse --verify --end-of-options "${branch}^{commit}")"
+started_merge=false
+abort_merge() {
+  if [ "$started_merge" = true ] && git rev-parse -q --verify MERGE_HEAD >/dev/null; then
+    git merge --abort
+    echo "Verification failed; the pending merge was aborted." >&2
+  fi
+}
+trap abort_merge EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
+started_merge=true
+git merge --no-ff --no-commit "$target"
+if ! git rev-parse -q --verify MERGE_HEAD >/dev/null; then
+  echo "Already integrated; no merge commit created."
+  exit 0
+fi
+npm ci --no-audit --no-fund
+npm run verify
+git commit -m "Merge $branch"
+trap - EXIT
+echo "Verified and merged $target locally. No push or deployment was performed."

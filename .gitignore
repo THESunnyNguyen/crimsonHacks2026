@@ -24,3 +24,11 @@ data/*.local.json
 data/*.tmp
 *.tsbuildinfo
 .vercel/
+
+# Local verification and browser evidence
+.artifacts/
+.playwright-mcp/
+.playwright-cli/
+playwright-report/
+test-results/
+.paradev/config.local.toml

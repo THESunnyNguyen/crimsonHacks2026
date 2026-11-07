@@ -4,15 +4,25 @@ Crimson Hacks 2026 concept demo. Not affiliated with the shop.
 
 ## Local development
 
-Requires Node.js 22 and npm. Run `npm install`, copy `.env.example` to `.env`, and set a four-digit `STAFF_PIN`. Leave both `UPSTASH_*` values unset locally: local inventory and orders use ignored `data/*.local.json` files.
+Requires Node.js 22 or newer and npm (`nvm use` selects the pinned major). Run `npm ci`, copy `.env.example` to `.env`, and set a four-digit `STAFF_PIN`. Leave both `UPSTASH_*` values unset locally: local inventory and orders use ignored `data/*.local.json` files.
 
 Run `npm run seed`, then `npm run dev`. Visit `/` for the menu and `/staff` for the PIN gate and two staff tabs. `npm run seed:demo` resets the active store to 20 donuts per group and one sample order. Both seed commands overwrite inventory and orders, so select the intended environment first.
+
+## Workflow
+
+The [project review](docs/PROJECT_REVIEW.md) records the existing worktrees and
+remaining product integration work.
+See [docs/WORKFLOW.md](docs/WORKFLOW.md) for lane prompts, recoverable handoffs,
+review bases, isolated demo checks, and configured agent tools. Run
+`npm run handoff -- <lane> <base-sha>` at milestones and fill in its progress sections.
 
 ## Checks
 
 - `npm test`: date/time, authentication, validation, stock reservations, status changes, and concurrent local writes, isolated in temporary storage.
 - `npm run typecheck`: TypeScript.
 - `npm run build`: production build.
+- `npm run verify`: lint, all nested tests, build, and asset validation when present; compact output with full logs in `.artifacts/verify/`.
+- `npm run test:demo`: isolated browser acceptance checks after A/B/C integration, with fixture AI responses and real local persistence. No live-service credentials needed.
 
 API smoke check: GET `/api/menu` and `/api/inventory` are public. PUT `/api/inventory`, GET/POST `/api/orders`, and PATCH `/api/orders/:id` require `x-staff-pin`. Missing/wrong PIN returns 401. Create a today order to reserve stock; set it ready to release the reservation. Inventory levels are sold out at 0, low at 1–6, and plenty at 7+. Clients poll every five seconds.
 

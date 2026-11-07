@@ -7,6 +7,14 @@
         "@playwright/mcp@latest"
       ],
       "env": {}
+    },
+    "next-devtools": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "--no-install",
+        "next-devtools-mcp"
+      ]
     }
   }
 }

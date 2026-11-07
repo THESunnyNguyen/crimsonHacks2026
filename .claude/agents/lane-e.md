@@ -14,5 +14,6 @@ Rules:
 - Build exactly the brief, against `docs/CONTRACTS.md`. If the contract looks wrong, stop and tell Sunny; don't change it.
 - Only edit files your lane owns (ownership table in CONTRACTS). Don't touch `package.json` unless essential (say so if you do).
 - Theme tokens only; copy in content files; never commit secrets.
-- Small steps; prove each with `npm run build` and by running it. Keep main-mergeable at every commit.
-- When "Done when" passes: commit with a clear message and report what you built, how you verified it, what's left, and any file you touched outside your lane.
+- Run affected checks while editing; run `npm run verify` before handoff. Use runtime diagnostics for compilation feedback between builds.
+- Record progress at milestones in `docs/handoffs/<lane>.md` using `npm run handoff -- <lane> <base-sha>`; preserve a concrete resume step even when unfinished.
+- When "Done when" passes: commit and report the SHA, observed behavior, check results/evidence, unverified criteria, and ownership exceptions. See `docs/WORKFLOW.md`.

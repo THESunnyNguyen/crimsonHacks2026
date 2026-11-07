@@ -10,8 +10,12 @@
     "seed": "tsx scripts/seed.ts",
     "seed:demo": "tsx scripts/seed.ts --demo",
     "gen:assets": "tsx scripts/gen-menu-assets.ts",
-    "test": "tsx --test lib/*.test.ts",
-    "typecheck": "tsc --noEmit"
+    "test": "node scripts/test.mjs",
+    "typecheck": "tsc --noEmit",
+    "verify": "node scripts/verify.mjs",
+    "handoff": "node scripts/handoff.mjs",
+    "test:demo": "node scripts/demo-test.mjs",
+    "browser": "playwright-cli"
   },
   "dependencies": {
     "@upstash/redis": "^1.41.0",
@@ -24,14 +28,25 @@
     "zod": "^4.6.7"
   },
   "devDependencies": {
+    "@playwright/cli": "0.1.23",
+    "@playwright/test": "1.65.0",
     "@tailwindcss/turbopack": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.4.5",
+    "next-devtools-mcp": "0.4.0",
     "tailwindcss": "^4",
     "tsx": "^4.23.15",
     "typescript": "^5"
+  },
+  "overrides": {
+    "next-devtools-mcp": {
+      "@modelcontextprotocol/sdk": "1.32.2"
+    }
+  },
+  "engines": {
+    "node": ">=22"
   }
 }
