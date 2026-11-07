@@ -3,8 +3,10 @@
 **Read first:** `AGENTS.md`, `docs/CONTRACTS.md` (stock groups, CountResult, levels), `docs/DEMO.md` 0:50–1:35.
 **Owns:** `components/staff/CaseTab.tsx`, `components/staff/case/*`, `app/api/inventory/count/route.ts`, `lib/vision/*`, `scripts/eval-count.ts`, `test-images/*`, `docs/eval.md`.
 
+> **Rate limits:** `lib/ai.ts` retries 429s with backoff. `gpt-6-astra` has a 1.35M tokens/day cap shared by all dev testing, so keep images ≤1024px and don't loop the eval needlessly.
+
 ## 1. `POST /api/inventory/count` (replace the stub)
-- Staff-only. Accepts a multipart `image`; resize to ≤1568px with sharp; call `visionJSON` with `VISION_MODEL`.
+- Staff-only. Accepts a multipart `image`; resize to ≤1024px with sharp; call `visionJSON` with `VISION_MODEL`.
 - Prompt: the 4 stock groups with their visual descriptions from CONTRACTS; count group by group; it may be **a photo of a printed or on-screen picture**, so count what's depicted; never invent groups; confidence 0–1 per group; short `notes`. Validate with zod → `CountResult`. Never save.
 - Target < 8s. On failure return `{ error }` (the UI falls back to manual).
 

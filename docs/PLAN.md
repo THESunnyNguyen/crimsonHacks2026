@@ -19,7 +19,7 @@ My best friend's parents have run Fresh Donuts & Deli in South Salt Lake for ~25
 | Lanes | 3 code lanes 7:45–9:30 (A vision+confirm · B public site · C order board) + **F menu assets** (a small OpenAI generation script, low review load). Mini-wave 9:30–10:00 (D Case Cam · E pre-order) **only if main is demoable**. |
 | Tools | Skeleton, A, B, D = Claude Code · C, E, F, H = Codex. Cross-review: Codex reviews Claude's lanes; Claude reviews Codex's. |
 | App AI | **OpenAI API only** ($250 credits): vision counting (`gpt-6-astra`), order parsing (`gpt-6-luna`), transcription (`gpt-transcribe`), menu copy + photos (lane F). No Anthropic API in the app; Claude Code is only a coding agent. |
-| OpenAI credits also | **Codex runs on the API key** (no subscription limits) · 10-min **contract critique** by the strongest model before the skeleton |
+| Codex auth | **ChatGPT subscription** first. If it hits its limits, switch to the API key with `codex -m gpt-6-luna` (20M tokens/day; `gpt-6.1-sol` is capped at 1.35M/day). The app uses the API key. |
 | Generated photos | Labeled "Illustration" on the site; real photos from the family replace them later |
 | Deploy | Vercel auto-deploys from GitHub: push to `main` = production (the QR URL); branches get preview URLs. |
 | Storage | Upstash Redis on Vercel; JSON files locally. |

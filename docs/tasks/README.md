@@ -11,7 +11,7 @@
 | Freeze | 10:30 | `quickfix` only | Claude Haiku 5.5 low | — |
 
 Merges to main: **~8:45 · ~9:20 · ~10:00 · ~10:30**. Process: `REVIEW.md`. Ownership: `docs/CONTRACTS.md`.
-Concurrency cap: **3 worker agents total**, each in an isolated branch and worktree. Follow the [Agent Orchestration Policy](../../AGENTS.md#agent-orchestration-policy): delegate useful independent work, handle small or tightly coupled tasks directly, and never spawn workers recursively without explicit authorization. Queue additional lanes until a slot is free. Codex runs on the OpenAI API credits, so it doesn't share Claude's rate limits.
+Concurrency cap: **3 worker agents total**, each in an isolated branch and worktree. Follow the [Agent Orchestration Policy](../../AGENTS.md#agent-orchestration-policy): delegate useful independent work, handle small or tightly coupled tasks directly, and never spawn workers recursively without explicit authorization. Queue additional lanes until a slot is free. Codex runs on the ChatGPT subscription; backup is the API key with `gpt-6-luna` (20M tokens/day, as recorded in Sunny's local planning edits).
 
 The launch and merge steps below are a schedule, not blanket authorization to start every lane or merge. **Every merge to `main` requires user approval after cross-review.**
 
@@ -22,7 +22,7 @@ The launch and merge steps below are a schedule, not blanket authorization to st
 ## Step 0: one-time setup (7:15, ~10 min, while the critique runs)
 1. **Commit and push the plan** from your main checkout: `git add -A && git commit -m "Lock plan" && git push`
 2. **Local `.env`** in the main checkout: `STAFF_PIN`, `OPENAI_API_KEY`, and the model names (already filled in). **Leave out the `UPSTASH_*` vars locally**, so every worktree uses its own JSON files and agents never write to production data.
-3. **Codex on API credits:** sign Codex in with your OpenAI API key, not your ChatGPT account (`codex login` has an API-key option; or export `OPENAI_API_KEY` in the shell Paradev launches from). Default effort in `~/.codex/config.toml`: `model_reasoning_effort = "high"`.
+3. **Codex:** sign in with **ChatGPT** (`codex logout && codex login`). Backup if the subscription hits its limits: `codex login --with-api-key` and run `codex -m gpt-6-luna` (`gpt-6.1-sol` is capped at 1.35M tokens/day). Default effort in `~/.codex/config.toml`: `model_reasoning_effort = "high"`.
 4. **Paradev:** add the repo. Set the workspace **setup script** to `./scripts/setup-worktree.sh`. Make **terminal presets** (launch commands):
    - `claude --agent lane-00` · `claude --agent lane-a` · `claude --agent lane-b` · `claude --agent lane-d` · `claude --agent reviewer`
    - `codex` (lanes C, E, F, H) · `codex -c model_reasoning_effort="medium"` (E, F)
