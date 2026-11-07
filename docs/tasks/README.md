@@ -11,7 +11,9 @@
 | Freeze | 10:30 | `quickfix` only | Claude Haiku 5.5 low | — |
 
 Merges to main: **~8:45 · ~9:20 · ~10:00 · ~10:30**. Process: `REVIEW.md`. Ownership: `docs/CONTRACTS.md`.
-Concurrency cap: **2 Claude Opus lanes (A, B) + 2 Codex lanes (C, F)**. Codex runs on the OpenAI API credits, so it doesn't share Claude's rate limits.
+Concurrency cap: **3 worker agents total**, each in an isolated branch and worktree. Follow the [Agent Orchestration Policy](../../AGENTS.md#agent-orchestration-policy): delegate useful independent work, handle small or tightly coupled tasks directly, and never spawn workers recursively without explicit authorization. Queue additional lanes until a slot is free. Codex runs on the OpenAI API credits, so it doesn't share Claude's rate limits.
+
+The launch and merge steps below are a schedule, not blanket authorization to start every lane or merge. **Every merge to `main` requires user approval after cross-review.**
 
 ---
 

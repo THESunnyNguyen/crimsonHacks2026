@@ -19,4 +19,23 @@ Instructions shared by every coding agent in this repo (Claude Code reads this v
 - Keep commits small, with clear messages.
 - Event rule: all code is written tonight; cite any open-source code you copy.
 - Don't use Salt Lake Tribune photos on the site (copyright). Footer says "Concept demo, not affiliated."
-- `main` must always be demoable. Merges happen only after a cross-review.
+- `main` must always be demoable. Merges happen only after a cross-review and user approval.
+
+## Agent Orchestration Policy
+
+This project uses Paradev for parallel AI development. Delegation is encouraged when it helps, but does not require spawning agents for every task.
+
+When a task contains multiple independent workstreams:
+- Use the `superset:orchestrate` skill to assess and coordinate the work.
+- Spawn up to 3 worker agents concurrently when delegation is useful; do not launch unnecessary workers.
+- Give workers isolated Git worktrees and branches.
+- Assign explicit file ownership.
+- Prefer Claude Code for UI work and Codex for backend or test tasks when appropriate.
+- Monitor workers and collect their results.
+- Verify each worker's changes before integration.
+- Do not merge to `main` without user approval.
+
+For small or tightly coupled tasks:
+- Work directly without spawning additional agents.
+
+Never allow workers to recursively spawn more Paradev workers without explicit authorization.

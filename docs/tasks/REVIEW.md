@@ -12,7 +12,7 @@ Send **FIX FIRST** items back to the authoring agent (Paradev: comment on the di
 
 ## Merge checklist (Sunny, ~8:30 · ~9:15 · ~10:00 · ~10:30)
 1. Review says MERGE.
-2. Merge into `main` (Paradev, or `./scripts/merge-task.sh <branch>`), which runs `npm run build`.
+2. Obtain user approval, then merge into `main` (Paradev, or `./scripts/merge-task.sh <branch>`), which runs `npm run build`. A review verdict alone does not authorize the merge.
 3. Push → Vercel deploys → open the production URL on your phone and run that lane's DEMO.md steps.
 4. Broken? Revert the merge right away (`git revert -m 1 HEAD && git push`). **Main must always be demoable.**
 5. The other lanes pull main into their branches (`git merge main`) so they stay current.
