@@ -21,22 +21,6 @@ export function Story() {
           ) : null}
         </Fragment>
       ))}
-      <figure className="space-y-2 rounded-theme border-l-4 border-accent bg-frosting p-4">
-        <blockquote className="font-display text-2xl leading-snug">
-          {site.quote.before} {site.quote.text}
-        </blockquote>
-        <figcaption className="text-sm">
-          —{" "}
-          <a
-            href={site.quote.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline"
-          >
-            {site.quote.credit}
-          </a>
-        </figcaption>
-      </figure>
     </section>
   );
 }

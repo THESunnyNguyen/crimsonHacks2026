@@ -1,24 +1,29 @@
 # Lane photos handoff
 
-**Current production application source:** `85a914e18ccce8bccb33e3550f3dcd7df632624c` (deli image polish), independently reviewed **MERGE**. Deployment `dpl_5pEivjyxXUMWSwMEHK9pcnVFi25U` is **READY** and serves the public alias. Earlier photo/story deployment entries below are historical. The final coordinator backup must include this application source.
+**Current production source:** `4f106acc6d56bf18dc24d5b7abde49b78b45938b` (user-supplied Our Story copy), independently reviewed **MERGE**. Production deployment `dpl_8XT5ChiRSN3jqFy19E6aAv9aNf3P` is **READY** and serves the public alias. Application code is identical to tested story commit `85e13cce94752ce52b14a4bdb766bce401fba57b`; the merged source also preserves the coordinator’s closeout documents. This later user copy update supersedes the application captured by the coordinator’s `adcd1e8` closeout; the coordinator owns any backup refresh.
 
 - Branch: `recolor-site-theme-31ee83c5`
 - Base commit: `132f692e73522facb00ef707320e02bf026e0ffb`
-- Snapshot commit: `85a914e18ccce8bccb33e3550f3dcd7df632624c`
-- Refreshed: 2026-11-07T05:29:02.320Z
+- Snapshot commit: `4f106acc6d56bf18dc24d5b7abde49b78b45938b`
+- Refreshed: 2026-11-07T05:42:23.973Z
 - Worktree: `/Users/sunnynguyen/.paradev/worktrees/crimsonHacks2026/recolor-site-push-changes-31ee83c5`
 
 ## Committed changes since base
 ```text
-components/public/Hero.tsx           |  10 +++++
- components/public/Menu.tsx           |   7 ++-
- components/public/Story.tsx          |  18 +++++++-
- content/site.ts                      |  16 ++++++-
- docs/handoffs/photos.md              |  82 +++++++++++++++++++++++++++++++++++
+components/public/Hero.tsx           |  10 ++
+ components/public/Menu.tsx           |   7 +-
+ components/public/Story.tsx          |  34 +++--
+ content/site.ts                      |  27 ++--
+ docs/demo-script.md                  |  69 ++++++++++
+ docs/handoffs/deploy.md              |  24 ++--
+ docs/handoffs/orchestrator.md        | 251 +++++++++--------------------------
+ docs/handoffs/photos.md              | 102 ++++++++++++++
+ docs/pitch/judge-qa.md               |  20 +++
+ docs/pitch/slides.md                 | 115 ++++++++++++++++
  public/img/menu/deli-sandwich.webp   | Bin 0 -> 120242 bytes
  public/img/shop/front.webp           | Bin 0 -> 230024 bytes
  public/img/shop/untitled-design.webp | Bin 0 -> 95878 bytes
- 8 files changed, 128 insertions(+), 5 deletions(-)
+ 13 files changed, 435 insertions(+), 224 deletions(-)
 ```
 
 ## Working tree at snapshot
@@ -91,3 +96,20 @@ Composition/framing: camera at a 45-degree angle, complete sandwich centered wit
 Lighting/mood: warm morning light, soft light from upper left, shallow depth of field, natural edible textures, understated neighborhood bakery presentation.
 Constraints: generic illustrative serving suggestion, not a claim about a confirmed shop recipe. No text, logos, watermarks, people, plates, utensils, extra food or props. The website will label this image Illustration.
 ```
+
+
+## Our Story copy — user request after freeze
+- Base: `e7bc8a5a89c13ac29c4b6f9e17bdb8e918407074`. User supplied the complete replacement story, including Wilson and Brenda's names, opening in 1999, scratch-made donuts, community gratitude, and the Yelp 2023 recognition. These statements are user-provided copy, not newly researched assertions.
+- Replaced story text verbatim, with whitespace-only paragraph breaks for readability; heading is now exactly “Our Story”. Kept the kitchen photo after the introductory paragraph. Removed the superseded Tribune quote/credit and its unused content entry so the section contains the requested replacement copy.
+- Scope is only `content/site.ts`, `components/public/Story.tsx`, and this lane handoff. This is permitted copy/polish after the 22:30 freeze. No tooling/CI/contracts/process/environment changes, no production data writes, no recording/pitch work.
+- Author `npm run verify` PASS: `.artifacts/verify/1794029934952-6a3669/result.json`.
+- Local production build at this worktree's port 3120: exact paragraph-joined text equals the supplied copy; heading matches; photo loaded and remains between paragraphs; superseded quote absent; no horizontal overflow at 390px. Both mobile screenshots visually inspected. Evidence: `.artifacts/story/local-checks.json`, `local-mobile-top.png`, `local-mobile-bottom.png`. Preview stopped before independent review.
+- Independent Claude review **MERGE** on clean story commit `85e13cce94752ce52b14a4bdb766bce401fba57b`: normalized text matches exactly; photo placement retained; stale quote references absent. Evidence: `.artifacts/story/claude-review.json`.
+- Independent `npm run verify` PASS on that commit: `.artifacts/verify/1794029998192-5a2fea/result.json`. Independent `npm run test:demo` PASS, all 3 fixture/disposable-data flows: `.artifacts/demo/run-GA3Zx5/result.json`.
+- Origin/main advanced to coordinator closeout `adcd1e8` during review. Merged it without conflicts into `4f106acc6d56bf18dc24d5b7abde49b78b45938b`; only five inherited coordinator documents differ from tested story commit `85e13cc`. No application/package/config differences; six application tree hashes are identical. Independent supplementary Claude review **MERGE** on exact merged source `4f106ac`. Existing verified checks apply to its identical application tree. Evidence: `.artifacts/story/claude-merge-review.json`. This lane did not author pitch/recording or closeout work.
+- Fast-forward pushed the reviewed merged source and deployed a clean tracked-source archive. Upload dry run: 266 files, no secrets/local environment/build/runtime/temporary dependencies. Evidence: `.artifacts/story/deploy-dry-merged.json`.
+- Production `dpl_8XT5ChiRSN3jqFy19E6aAv9aNf3P` is **READY**; alias resolves to that deployment. Source: `4f106acc6d56bf18dc24d5b7abde49b78b45938b`. Evidence: `.artifacts/story/deployment-ready.json`, `production-alias.json`.
+- Live 390px browser acceptance PASS: supplied copy matches exactly after paragraph joining; exact “Our Story” heading; kitchen photo loaded between intro/body; superseded quote absent; no horizontal overflow. Production screenshot visually inspected. Evidence: `.artifacts/story/production-checks.json`, `production-mobile-top.png`, `production-mobile-bottom.png`. Only existing storefront image-preload warnings observed; no runtime errors.
+- Live public page/menu/inventory/staff page return 200; unauthenticated staff orders remains 401. Evidence: `.artifacts/story/production-http.json`. Env/database unchanged; no production data writes.
+- Live: https://fresh-donuts-deli-crimson2026.vercel.app/#story . Previous deployment retained: `dpl_5pEivjyxXUMWSwMEHK9pcnVFi25U`.
+- Copy request is complete. Local preview stopped; dirty main-checkout contract edit remains untouched. Follow-up handoff commit is documentation only. Coordinator owns refreshing the final golden-path backup to the newly deployed source; this lane did not perform that backup.
