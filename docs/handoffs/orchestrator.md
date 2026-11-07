@@ -1,185 +1,66 @@
-# Integration handoff — November 6, 2026
+# Orchestrator handoff — Crimson Hacks 2026
 
-## Current authorization/status — 21:52 MST
-Sunny explicitly said **"yes merge main, approved"** in this chat at21:52.
-Proceed with reviewed integration merge, required checks, main push and production
-verification. Earlier pending-approval notes below are historical, superseded.
-Keep original main edits recoverable; five non-contract edits are incorporated;
-CONTRACTS.md local note remains preserved, not silently committed. Ready stays
-release-only under current contract unless Sunny separately approves its change.
+Refreshed: 2026-11-06T22:39:19-07:00. Run `date` at every check-in.
 
-Other ongoing deployment chat was checked via Paradev sessions read:
-workspace7efb4a55-644e-4e85-838d-5911da0a581f,
-session6896a636-0c09-4d01-9ad9-13d3eb8d1d66.
-Sunny explicitly said **"terms accepted, deploy production."** there.
-That agent completed Production deployment and real Redis/staff/AI parse checks.
-Account-owned Free Upstash **newDB**, US-WEST-1, is linked; the coordinator's
-72-hour scratch database is superseded for hosting and may expire naturally.
-Live URL: https://fresh-donuts-deli-crimson2026.vercel.app
-Deployment: fresh-donuts-deli-crimson2026-b1kz5fjn9.vercel.app, READY/production,
-source bd13056. Application files match current integration exactly; later changes
-are docs. Parent independently confirmed /200, /api/inventory200, unauth orders401.
-No duplicate deploy while the other agent was active; it has finished its checks.
-Still outstanding: actual-phone acceptance, final backup AFTER22:30 freeze,
-rehearsal and final keyboard-down monitoring. No more pitch workers.
+## Current release
+- Use `/Users/sunnynguyen/.paradev/worktrees/crimsonHacks2026/orchestrator-crimson-hacks-173615f7`, branch `integration`. Original chat cwd ending b578253d is stale; do not use it as application source.
+- Node22: prepend `/Users/sunnynguyen/.nvm/versions/node/v22.23.4/bin` to PATH.
+- Main merge and production were explicitly approved and completed. Main contains final reviewed application source **85a914e18ccce8bccb33e3550f3dcd7df632624c**, plus documentation commits. Run git log/status for current documentation tip.
+- Production: https://fresh-donuts-deli-crimson2026.vercel.app
+- Final deployment: **dpl_5pEivjyxXUMWSwMEHK9pcnVFi25U**, immutable https://fresh-donuts-deli-crimson2026-gcyt525kc.vercel.app, READY/production. Application source85a914e.
+- Final public styling includes red/navy/cream palette, user-supplied storefront and kitchen photos, simplified story copy, and generated deli sandwich with Illustration label. See `recolor.md` and `photos.md` for independent reviews and deployment evidence.
+- Vercel project has **no Git auto-deploy link**. Documentation pushes do not require deployment; future application changes need a deliberate reviewed deploy from a clean tracked archive.
+- Production/Preview vision model `gpt-6.1-terra`; notes model `gpt-6-luna`. Account-owned Free Upstash newDB, US-WEST-1. Never overwrite it with the historical scratch DB.
+- Local checks use Node22. Vercel project says22.x, but existing package engines `>=22` resolved both earlier and current builds to nodejs26.x. No runtime/tooling source edit was made tonight.
 
-Coordinator operates in existing integration worktree:
-`/Users/sunnynguyen/.paradev/worktrees/crimsonHacks2026/orchestrator-crimson-hacks-173615f7`.
-Original chat cwd b578253d was fast-forwarded to6004e25 for isolated Pitch work;
-Pitch commit6ef7385 cherry-picked onto integration as b0ec956.
-Use Node22: prepend `/Users/sunnynguyen/.nvm/versions/node/v22.23.4/bin` to PATH.
-Run `date` at every check-in; shell clock is authoritative (last 21:25 MST).
+## Clock and remaining acceptance
+- 22:00 integration A+B+C verify/demo milestone: MET early.
+- 22:20 hosted live AI: MET with a real Commons donut photo and typed DEMO notes. **Sunny physical-phone full flow remains UNCONFIRMED.** Visual approval of the design is not functional phone acceptance. Actual shop/customer call notes were not supplied.
+- 22:30 FEATURE FREEZE is active. Only demo blockers, copy and polish allowed; no new features/tooling/skills/CI/refactors/process work.
+- The phone milestone is unconfirmed beyond its15-minute buffer. D/E/H and further optional polish are cut; keep the entire golden path.
+- 23:00 rehearsal: **offline backup is ready and verified; Sunny's actual timed pitch/QR/phone rehearsal remains pending.** Script/slides belong to the separate pitch owner; no new pitch worker.
+- 23:20 main/production milestone: approved main and production already completed early. Final documentation sync follows recording; verify main/origin and production identity before closeout.
+- 23:30 keyboards down: **nothing commits after this time**.
+- Continue coordination while remaining acceptance is pending; Sunny objected when the coordinator stopped mid-task. Respond to status questions briefly, then continue independent authorized work.
 
-## Authorization and clock
-User authorizes integration and preview only, NOT main merge or production push.
-Separate explicit final yes required. No tooling, CI, skills, refactors, process work.
-Max 3 workers, no recursive agents. Until 22:00 isolated worktrees; after 22:00
-workers work against integration with nonoverlapping ownership.
-22:00 verify + fixture test:demo; 22:20 real photo/notes + preview phone check;
-22:30 freeze; 23:00 rehearsal + saved video; 23:20 approved main + prod;
-23:30 no further commits. If milestone >15 min late drop D/E/H then polish.
-Golden path docs/DEMO.md cannot be cut.
+## Final offline backup — COMPLETE
+- Easy-access file: `/Users/sunnynguyen/Desktop/Crimson Hacks Demo Backup/Fresh Donuts Demo - 2026-11-06.mp4`.
+- Same folder: `Play backup.html` and `README.txt` with cue points and evidence labels.
+- Complete source artifacts: `.artifacts/final-backup-complete/`; keep original WebM, MP4, screenshots, recording-result.json, playback-result.json, video-metadata.json and delivery.json.
+- Recorded **22:33:55–22:35:33 MST, AFTER freeze**, against application source85a914e. Runtime **99.72sec**, H.264 MP4,1440×1000,5,560,501bytes, silent for live narration.
+- SHA256 `a75607cd734e4920e7f708a9687437ad042787ef1e4391182a2537399653b065`.
+- Shows public menu/story/directions → full photo draft → human correction → explicit publish → low → empty/sold out → unsaved notes draft → Save Tomorrow → Ready.
+- Three LIVE OpenAI count calls and one LIVE notes call, allHTTP200; real LOCAL persistence. Staged synthetic images are clearly labeled throughout; **not an accuracy benchmark or physical-phone test**. No AI responses mocked, no PIN shown, no production data changed.
+- Offline Chromium playback with networking disabled passed: playback advances, nine seek points decode, no video error. Public story/directions, correction, draft and final states visually inspected. Desktop copy hash equals verified MP4.
+- Normal-speed complete backup needs100sec; a3-minute pitch has80sec left for opening, architecture and close. Do not cut full/low/empty/notes/Save/Ready to fit90sec.
+- Prior core recording `.artifacts/final-backup-live/` and pre-freeze fixture recording `.artifacts/pitch/golden-path-fixture.mp4` are retained, but deliver the COMPLETE file above.
+- Local JSON demo reset afterward to20/group, one sample order,78available. Do not reset production blindly.
 
-## Decisions pending Sunny (async questions sent)
-1. Ready semantics: release held only (C brief explicitly says restores stock)
-versus decrement physical case count AND release held. Recommend latter; do not
-change CONTRACTS/store before reply. Need handle repeated transitions, tomorrow,
-post-box cancellation/reopening if approved.
-2. Six main dirty docs: preserve/reconcile after approval; patch backup at
-`/tmp/crimson-main-doc-edits-20261106.patch`. Main originals untouched.
-3. Confirm separate final approval gate; no approval yet.
-4. Need real donut photo path/URL with known counts. Only synthetic images found.
+## Verification evidence
+- Initial independent Codex MERGE: B2b10be9 (includes F2caa94a ONCE), C83904e9, Ac9fc35c/d3c787a; A handoff258b372 integrated. Workflow692a5a6 integrated first. No tooling additions afterward.
+- Main original verify35 tests+lint/build/assets: `/Users/sunnynguyen/Desktop/crimsonHacks2026/.artifacts/verify/1794027187124-72315f/result.json`; main three fixture demo flows `.artifacts/demo/run-Bjold1/`.
+- Recolor coordinator recheck: `.artifacts/verify/1794028345262-a7b76d/result.json`, `.artifacts/demo/run-iNNms6/`.
+- Shop photos coordinator recheck: `.artifacts/verify/1794028896595-95a08c/result.json`, `.artifacts/demo/run-Bsfs9I/`.
+- FINAL deli/application coordinator recheck: `.artifacts/verify/1794029276617-3c0059/result.json`, all3 fixture demo flows `.artifacts/demo/run-5RFg0i/`. Author lane also has independent Claude MERGE at85a914e plus verify/demo evidence in `photos.md`.
+- Freeze production check: `.artifacts/production/freeze-check.json`: expected deployment READY, canonical alias correct, public/staff/menu/inventory200, unauthenticated orders401, deployed sandwich SHA256 matches source.
+- Earlier production LIVE real photo9.741sec and notes1.763sec: `.artifacts/production/result.json`. Prior Astra25sec/504 failure `.artifacts/production/astra-timeout.json` motivated configured Terra; no source/contract change. **Do not claim reliable8sec or accuracy.**
+- Local LIVE real Commons-photo browser flow `.artifacts/live-ui/result.json`; countUI16.679sec (earlier Astra), parse2.345sec. This and final backup are distinct from fixture browser tests.
+- Actual app Redis operations passed against isolated scratch DB `.artifacts/deploy/redis-app-check.json`; separate deploy chat verified intended account-owned production Redis persistence and status operations.
 
-## Integration — 22:00 milestone met early at21:17
-Base3f0b12a; existing clean integration reused. All reviewed and integrated:
-- Workflow692a5a6 as275d97b; B2b10be9 (includes F2caa94a ONCE) asd81d026.
-- C83904e9 as6004e25; A corec9fc35c asc23f172; A cap/evald3c787a asfef73f3.
-- Pitch docs6ef7385 cherry-picked asb0ec956; A handoff258b372 merged afterward.
-Own npm run verify passed after EVERY integration merge. Latest evidence:
-`.artifacts/verify/1794025091602-37684e/result.json` (35 tests + lint/build/assets).
-Own npm run test:demo passed all3 fixture-AI browser flows on combined source:
-`.artifacts/demo/run-2SwpOO/` and after1024px `.artifacts/demo/run-iyTPCd/`.
-No live accuracy claim from fixtures. No required new feature fixes found yet.
-IMPORTANT merge-task.sh refuses branches other than main (observed exit1).
-No tooling edit: reproduced its pending merge + verify + commit-on-pass procedure.
+## Approvals and preserved user work
+- Sunny approved main: "yes merge main, approved" at21:52. Separate deployment chat approved: "terms accepted, deploy production." Do not ask again.
+- Main checkout `/Users/sunnynguyen/Desktop/crimsonHacks2026` retains ONLY the user's original uncommitted `docs/CONTRACTS.md` note. Do not stage it, change the contract, or pop old stash over merged docs.
+- Original six edits preserved in stash `c1789146fe0daeef5945869f81ec14bd2864a2c7` and `/tmp/crimson-main-doc-edits-premerge-20261106.patch`. Five non-contract edits reconciled in fc76e14. Contract-only backup `/tmp/crimson-main-contract-note-20261106.patch`; later byte-for-byte check `/tmp/crimson-main-contract-note-20261106-postrecolor.patch`.
+- Ready accounting unchanged: today count20/held2/available18 → Ready count20/held0/available20. It releases the hold without automatic physical-count deduction. Evidence `.artifacts/live/ready-accounting-current.json`; sample restored. Deduction recommendation remains unapproved; main approval is not contract approval. Scripted tomorrow order does not affect today's stock.
+- No secrets committed. Vercel credentials/env stay private. Never copy Redis credentials into local .env.
 
-## Live evidence
-Local ignored .env copied only app variables from main, NO Redis. Main .env has
-stale model IDs: first live parse failed404 for claude-haiku-5-5. Integration-only
-.env corrected to contracted OpenAI IDs. Main file untouched. Do not log keys.
-- Typed DEMO notes via real gpt-6-luna passed assertions2491ms (<3sec).
-  `.artifacts/live/parse-result.json`. This is typed sample text, not a real caller.
-- A real licensed Commons photo evaluated with real models; group labels uncertain.
-  A documents latency17–23s astra;6.7–7.5s terra. No shop-photo benchmark.
-- Independently reran one real-photo astra evaluation:19.8s, output5/4/0/3 versus
-  tentative labels7/1/1/3; total12 correct, grouping poor. `.artifacts/live/count-real-astra.log`.
-- Need real shop full/low/empty phone photos and phone testing before accuracy claim.
-A accidentally sent email in one Wikimedia User-Agent; disclosed to Sunny, stopped.
-Current handoff redacts literal address; original remains in d3c787a history.
-
-## Local app / video
-App running3110 via production exec session43961 (localhost and10.56.51.5:3110).
-Seeded local demo data20/group with one sample. Pitch finished and RELEASED the runtime write window.
-Video explicitly labels fixture AI throughout; real local publish/order writes.
-USER STEERING21:25: separate agent owns pitch script/slides; stop our Pitch worker.
-Our duplicate pitch docs commit b0ec956 reverted. Retain ignored provisional
-recording only. ORCHESTRATOR must capture FINAL backup AFTER22:30 freeze.
-No more pitch workers or pitch-document edits.
-Current provisional .artifacts/pitch/golden-path-fixture.mp4 and .webm passed
-all8 golden-path assertions with3count and1parse fixtures, no page errors.
-Parent ffprobe verified MP4 duration80.92sec, size3,209,010bytes; worker offline
-HTML video playback metadata+seeks passed. This is PROVISIONAL, not post-freeze final.
-Runtime write window released.3110 now production next start, session43961;
-dev HMR blocked127.0.0.1, no source/config fix needed. Parent reset local demo data at21:26:20/group, one sample, available78. Keep backup labeled fixture AI.
-
-## Workers — phase2 started early after integration passed
-A Claude workspace639ca8bb-82d9-43d3-a9fa-4cd4b354d3f6,
-terminal75148cc2-db58-4ad5-a51b-d80110946e67 finished/stopped at258b372.
-All A changes reviewed; dirty generated AGENTS/browser artifacts preserved in lane.
-Review Codex native `/root/review_bc` completed read-only B/C/A reviews (MERGE all),
-then reassigned DEPLOY worker in integration (only .vercel, .artifacts/deploy,
-docs/handoffs/deploy.md and preview external config). No app code or main/prod.
-Pitch native `/root/pitch` INTERRUPTED and STOPPED on user request21:25.
-No further pitch worker permitted; script/slides handled separately.
-Replacement deployment worker `/root/preview_finish` completed blocked handoff;
-prior `/root/review_bc` deployment attempts hit TPM limits; do not resume.
-All workers now stopped/finished. Parent handles post-freeze recording.
-Both workers must coordinate commits with parent. No recursive workers.
-Old CLI reviewer failed auth before work; older B/C/F sessions idle/limited.
-
-## Deploy preparation
-New Vercel project `fresh-donuts-deli-crimson2026` created and linked to integration.
-Vercel CLI authenticated thesunnynguyen. No production deployment authorized.
-CLI created ignored .env.local OIDC token; removed its redundant .gitignore edits.
-Vercel integration installations EMPTY. No Redis credentials available locally.
-Async question to Sunny asks intended DB/project (no secrets in chat), pending.
-Deploy worker handles Node22 and preview-only OpenAI/PIN env via stdin; never
-copy Redis into local .env or attach unrelated production database.
-Actual preview Redis and phone acceptance outstanding. No working preview claim yet.
-
-##21:25 deployment gate
-See docs/handoffs/deploy.md. New project first preview refused by Vercel:
-reason first_deployment_production; userActionRequired:true. No deployments/URL
-or Vercel build exists. Do NOT bypass or deploy production without explicit yes.
-Async question asks wait until final gate vs authorize first deployment once
-Redis ready vs named existing dedicated project. Pending, not approved.
-Preview-only OpenAI/PIN/model env ready; Next+Node22 configured; Vercel login
-protection disabled only for this new project to permit public phone preview.
-Staff PIN gate unchanged. Dedicated Redis still missing.
-Clean tracked deployment source prepared at .artifacts/deploy/source (0f233ae);
-refresh from final HEAD before deployment. No secrets/runtime data in upload.
-Main six-edit patch rechecked identical to saved backup at21:22.
-
-##21:34 resumed monitoring — do not end merely for deployment blockers
-Sunny asked why coordinator stopped at21:27. Ending the turn was an error:
-deployment decisions block only deployment, not monitoring/post-freeze recording.
-Continue authorized work and timed monitoring through deadline; don't interpret
-silence or elapsed time as approval. No more pitch workers.
-
-- Unmocked Chromium phone-width browser run passed on local3110 at21:32:
-  real Commons image -> count remains unsaved -> staff correction -> publish ->
-  public Only3left; typed DEMO notes -> unsaved draft -> Save -> Tomorrow -> Ready.
-  Photo UI16,679ms; notes UI2,345ms; HTTP200 both; no page errors/overflow.
-  Evidence `.artifacts/live-ui/result.json` and screenshots. No AI interception.
-  This is not an actual phone/Redis test or a shop-photo accuracy benchmark.
-- Independent Terra real-photo pipeline run11.0s (slower than A's6.7–7.5s).
-  `.artifacts/live/count-real-terra.log`. Neither model reliably meets8sec;
-  no default model change made from this evidence. Manual fallback remains vital.
-- Local data reset after live UI run:20/group, one sample, available78.
-- WebKit browser executable absent. Did not install new browser/tooling.
-- Separate pitch owner branch `pitch-demo-docs-e9465335`, worktree
-  `own-lane-p-pitch-e9465335`, commit e9b98d3, three docs only. No terminal session
-  exists to message. Do not spawn one or edit its content. Review finding:
-  docs/demo-script.md:47 and:53 permit skipping repeated photos;:54 permits showing
-  seeded board instead of draft/save. Conflicts with Sunny's never-cut-golden-path
-  instruction. Preserve full->low->empty->notes->save->Ready via labeled recording
-  or manual fallback. Not integrated pending owner resolution. Actual manual label
-  is 'Publish counts'. Core app remains unmodified.
-
-## Final backup after22:30 freeze (orchestrator only)
-Confirm date and final source/runtime, seed intended LOCAL app, then reuse ignored
-one-off recorder (no repo tooling added):
-`PITCH_APP_ROOT=<integration-path> PITCH_MUTATION_APPROVED=yes PITCH_OUTPUT=.artifacts/final-backup node --import tsx .artifacts/pitch/record.mjs`
-This records fixture AI+real local writes with permanent visible fixture label.
-Transcode WebM to MP4 via ffmpeg, independently ffprobe duration and inspect frames;
-verify offline HTML video playback, record HEAD/check results in this handoff.
-Keep provisional21:23 recording until final succeeds. Restore local demo seed
-when finished. Do NOT claim fixtures establish model accuracy or hosted Redis.
-
-##21:39 documentation reconciliation
-Applied the five NON-CONTRACT main edits into integration, preserving workflow's
-existing three-worker policy. `git diff --check` passed. Main originals and saved
-patch remain byte-identical. CONTRACTS.md unchanged: its rate/retry text and
-Ready semantics still need Sunny approval. Do not block reversible non-contract
-reconciliation on the earlier unnecessarily broad approval question.
-
-##21:44 actual Redis advanced without a paid dependency
-Dedicated free temporary Upstash created, PING and actual lib/store.ts Redis
-paths passed. All seven Preview env names/targets checked. See updated deploy.md.
-Expires November10 unless claimed. Private bootstrap credentials/claim link only
-in /tmp/crimson-upstash-bootstrap-secret.md, mode0600; never local .env or Git.
-No production deployment/env/main change. Only deployment gate now is explicit
-first-Production yes (or named appropriate existing project).
-Current Ready behavior reproduced via local sample: count20 held2 available18
--> Ready count20 held0 available20; reverted sample toNew. Evidence
-.artifacts/live/ready-accounting-current.json. Stock decision still pending.
+## Runtime and other chats
+- Local production-mode site: http://localhost:3110, exec session **70683**, built from the final app source. Runtime overrides `VISION_MODEL=gpt-6.1-terra VISION_SECOND_MODEL=`. Uses local JSON; production data untouched by coordinator recording.
+- A Claude lane stopped at21:16, final258b372, last terminal read still confirms stopped. Existing dirty generated AGENTS.md and browser artifacts were left untouched. No workers under this coordinator are doing feature work.
+- Separate design owner: workspace31ee83c5-68c3-49c2-b713-4f506e8c8892, sessionb4988b4e-aec3-400c-8c3d-5a1edf67cb9e. Final application85a914e and deployment handoffe7bc8a5. No recording/pitch/tooling ownership.
+- Existing pitch owner: workspacee9465335-3e3e-4085-9676-3399452d2117, sessiona4f9b1ea-6754-4379-ae43-1778b8f87070. Corrected fallback copy/labels in de88b3b/67a2fa5; coordinator reviewed and integrated all3 Markdown pitch files. Full recording path/runtime sent at22:38; no new edits or worker requested. This lane supplies Markdown content, not an exported slide deck. Actual slide assembly/QR/rehearsal remain with Sunny/separate owner.
+- Earlier deployment chat: workspace7efb4a55-644e-4e85-838d-5911da0a581f, session6896a636-0c09-4d01-9ad9-13d3eb8d1d66, completed.
+- Use `superset sessions read --local` for these chat sessions. Current status/last messages should be checked before sending followups. Max3 workers; no recursive spawns; explicit file ownership.
+- Original duplicate pitch worker was stopped at Sunny's request; its commit b0ec956 reverted ascb17966. Do not revive it.
+- Historical scratch Upstash expiresNovember10; private credentials at `/tmp/crimson-upstash-bootstrap-secret.md` mode0600. Let expire; account-owned DB supersedes it.
+- A's one Wikimedia request sent the user's email in a User-Agent; disclosed and stopped. Current handoff redacts it; old d3c787a history still contains it. No API secret sent.

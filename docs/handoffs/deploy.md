@@ -1,15 +1,19 @@
 # Deployment handoff — November 6, 2026
 
-## Superseding status — 21:52 MST
-Production is LIVE after Sunny explicitly approved in the separate deployment
-chat: "terms accepted, deploy production." Account-owned Free Upstash newDB in
-US-WEST-1 supersedes the temporary scratch database described below.
-Live: https://fresh-donuts-deli-crimson2026.vercel.app
-Deployment source bd13056; application code equals current integration. The other
-agent reported Redis persistence, staff auth, inventory/order updates and live
-AI parsing passed. Parent independently confirmed public HTTP200 and staff401.
-Main merge now separately approved in this chat. Earlier blocked notes below
-are historical. Actual-phone acceptance and post-freeze backup still pending.
+## Current status — 22:38 MST
+Production is LIVE: https://fresh-donuts-deli-crimson2026.vercel.app
+
+- Sunny's main and production approvals are explicit and both actions are complete.
+- Final reviewed/deployed application source: **85a914e18ccce8bccb33e3550f3dcd7df632624c**. Subsequent handoff and pitch commits are documentation only.
+- Production deployment **dpl_5pEivjyxXUMWSwMEHK9pcnVFi25U**, immutable https://fresh-donuts-deli-crimson2026-gcyt525kc.vercel.app, READY. Coordinator independently verified canonical alias, expected public/staff/auth HTTP results, and asset hash in `.artifacts/production/freeze-check.json`.
+- Recolor, user-supplied shop photos/story copy, and deli illustration have independent Claude reviews and author/coordinator verify+fixture demo passes. See `photos.md` and `orchestrator.md` for exact evidence.
+- Account-owned Free Upstash newDB, US-WEST-1, is configured. It supersedes the historical scratch DB below. Environment/database unchanged by design updates.
+- Vision uses `gpt-6.1-terra`, notes `gpt-6-luna`. Earlier production real photo passed9.741sec and typed demo notes1.763sec; no accuracy or reliable8sec claim.
+- Complete post-freeze live-AI/staged-image backup is saved on Desktop and verified offline. Source85a914e,99.72sec. Exact path/evidence in `orchestrator.md`.
+- Actual physical-phone full flow, QR scan, and timed pitch rehearsal remain unconfirmed. Visual design approval does not close those checks.
+- Vercel has no Git link: source pushes do not automatically deploy. Documentation-only main sync does not require redeployment.
+
+Everything below is historical setup evidence, not a current approval blocker.
 
 Last checked: **21:44 MST**. Integration source: `0f233aed25cc5e5d53cbf63cad4f1f40bb3b52bb`.
 
